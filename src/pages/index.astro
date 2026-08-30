@@ -22,18 +22,21 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.secondary{ background:transparent; color:var(--accent); border:2px solid var(--accent); }
 			.info-box{ background:rgba(255,165,0,0.06); padding:1rem; border-radius:8px; margin:1rem 0; }
 			.contact-row{ display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem; }
+			/* Semantic business name styling (replaces hard <br />) */
+			.business-name span { display:block; line-height:1.05; }
+			.business-llc { font-weight:500; font-size:0.95em; }
 			@media (max-width:600px){ main{ margin:1rem; padding:1rem; } .contact-row{ flex-direction:column; } }
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>Vanguard Collaboration<br />Transportation Services LLC</h1>
+			<h1 class="business-name"><span>Vanguard Collaboration</span><span class="business-llc">Transportation Services LLC</span></h1>
 			<p class="info-box">
 				Base of operations: Roseville, MN • Phone: <a href="tel:+16122501613">(612) 250-1613</a>
 			</p>
 			<p>
-				Welcome to Vanguard Collaboration Transportation Services LLC. We provide reliable, professional transportation services with specially trained employees and vehicles that are kept clean and in pristine order. We offer real-time dispatch to get you moving quickly and safely.
+				Welcome to Vanguard Collaboration Transportation Services LLC. We provide reliable, professional transportation services with specially trained employees and vehicles that are kept clean and i[...]
 			</p>
 
 			<section>
