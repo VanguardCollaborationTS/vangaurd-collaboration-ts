@@ -5,8 +5,9 @@ import { SITE_TITLE } from '../consts';
 
 <header>
 	<nav>
-		<div class="logo-link" aria-hidden="true">
-			<img src="/assets/header-van.jpg" alt="Vanguard Collaboration Transportation Services" />
+		<div class="brand">
+			<span class="company-name">Vanguard Collaboration Transportation Services LLC</span>
+			<img src="/download (1).jpg" alt="Vanguard van" class="brand-van" />
 		</div>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
@@ -41,7 +42,9 @@ import { SITE_TITLE } from '../consts';
 		justify-content: space-between;
 		gap: 1rem;
 	}
-	.logo-link img{ height:56px; display:block; }
+	.brand{ display:flex; align-items:center; gap:0.75rem }
+	.company-name{ font-weight:700; font-size:1rem; color:var(--black); }
+	.brand-van{ height:48px; display:block; object-fit:cover }
 	.internal-links{ display:flex; gap:0.5rem; align-items:center }
 	.internal-links a{ padding: 0.75rem 0.5rem }
 	.social-links{ display:flex; gap:0.5rem; align-items:center }
