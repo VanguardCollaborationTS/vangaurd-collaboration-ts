@@ -9,41 +9,61 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			:root{
+				--bg: ivory;
+				--accent: orange;
+				--text: #111;
+			}
+			body{ background: var(--bg); color:var(--text); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; }
+			main{ max-width:900px; margin:3rem auto; padding:2rem; }
+			h1{ color:var(--accent); }
+			.button{ display:inline-block; background:var(--accent); color:white; padding:0.75rem 1rem; border-radius:6px; text-decoration:none; border:none; cursor:pointer; }
+			.secondary{ background:transparent; color:var(--accent); border:2px solid var(--accent); }
+			.info-box{ background:rgba(255,165,0,0.06); padding:1rem; border-radius:8px; margin:1rem 0; }
+			.contact-row{ display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem; }
+			@media (max-width:600px){ main{ margin:1rem; padding:1rem; } .contact-row{ flex-direction:column; } }
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+			<h1>Vanguard Collaboration Transportation Services LLC</h1>
+			<p class="info-box">
+				Base of operations: Roseville, MN • Phone: <a href="tel:+16122501613">(612) 250-1613</a>
 			</p>
 			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
+				Welcome to Vanguard Collaboration Transportation Services LLC. We provide reliable, professional transportation services with specially trained employees and vehicles that are kept clean and in pristine order. We offer real-time dispatch to get you moving quickly and safely.
 			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+
+			<section>
+				<h2>Hours</h2>
+				<p>Open Monday – Saturday: 6:00 AM – 11:00 PM. Closed Sunday.</p>
+			</section>
+
+			<section>
+				<h2>Request Transportation</h2>
+				<p>Use the request form to submit details for future transportation. We'll get back to you to confirm availability and pricing.</p>
+				<div class="contact-row">
+					<a class="button" href="/request">Request Transportation</a>
+					<!-- Contact Dispatch - placeholder links. Update with live dispatch contact when available -->
+					<a class="button secondary" href="tel:+16122501613">Contact Dispatch</a>
+					<button class="button secondary" disabled title="Contact information coming soon">Dispatch Info (coming soon)</button>
+				</div>
+			</section>
+
+			<section>
+				<h2>Why choose us?</h2>
+				<ul>
+					<li>Specially trained employees focused on safety and customer service.</li>
+					<li>Reliable vehicles maintained in pristine, clean condition.</li>
+					<li>Real-time dispatching to reduce wait times and improve reliability.</li>
+				</ul>
+			</section>
+
+			<footer style="margin-top:2rem;">
+				<p>Questions? Call <a href="tel:+16122501613">(612) 250-1613</a> or use the request form.</p>
+			</footer>
 		</main>
 		<Footer />
 	</body>
