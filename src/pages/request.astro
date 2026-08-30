@@ -1,0 +1,117 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE} — Request Transportation`} description={SITE_DESCRIPTION} />
+    <style>
+      :root{ --bg: ivory; --accent: orange; --text:#111; }
+      body{ background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; }
+      main{ max-width:800px; margin:2.5rem auto; padding:1.5rem; }
+      h1{ color:var(--accent); }
+      form{ background:rgba(255,165,0,0.04); padding:1rem; border-radius:8px; }
+      label{ display:block; margin-top:0.75rem; font-weight:600; }
+      input[type=text], input[type=email], textarea{ width:100%; padding:0.6rem; margin-top:0.25rem; border-radius:6px; border:1px solid #ddd; font-size:1rem; }
+      textarea{ min-height:140px; resize:vertical; }
+      .row{ display:flex; gap:1rem; }
+      .col{ flex:1; }
+      .button{ display:inline-block; background:var(--accent); color:white; padding:0.6rem 1rem; border-radius:6px; text-decoration:none; border:none; cursor:pointer; margin-top:0.9rem; }
+      .muted{ color:#555; font-size:0.95rem; }
+      .success, .error{ margin-top:1rem; padding:0.75rem; border-radius:6px; }
+      .success{ background:#e6ffed; border:1px solid #bdeecf; color:#063; }
+      .error{ background:#fff1f0; border:1px solid #f4b1b1; color:#700; }
+      @media (max-width:640px){ .row{ flex-direction:column; } }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>Request Transportation</h1>
+      <p class="muted">Please complete this form and we'll contact you to confirm availability. If this is an urgent dispatch request, please call our dispatch line at <a href="tel:+16122501613">(612) 250-1613</a>.</p>
+
+      <!--
+        Formspree setup:
+        - This form posts to Formspree. Replace the action URL with the Formspree endpoint created for your form if necessary.
+        - The action is currently set to use your provided email (info@vanguardcollaborationts.com). If you register a Formspree form you'll receive a form ID like "f/abcd1234" and should replace the action URL with https://formspree.io/f/FORM_ID
+      -->
+
+      <form id="requestForm" method="POST" action="https://formspree.io/info@vanguardcollaborationts.com">
+        <label for="name">Name *</label>
+        <input id="name" name="name" type="text" required />
+
+        <div class="row">
+          <div class="col">
+            <label for="phone">Phone Number *</label>
+            <input id="phone" name="phone" type="text" pattern="^[0-9\s()+-]{7,20}$" placeholder="(612) 555-1212" required />
+          </div>
+
+          <div class="col">
+            <label for="email">Email *</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+        </div>
+
+        <label for="details">Request details (pickup/dropoff, date/time, accessibility needs, passenger count, notes) *</label>
+        <textarea id="details" name="details" required placeholder="Please include as many details as possible."></textarea>
+
+        <!-- optional hidden fields for Formspree -->
+        <input type="hidden" name="_subject" value="New transportation request from website" />
+        <input type="hidden" name="_language" value="en" />
+
+        <button class="button" type="submit">Submit Request</button>
+
+        <div id="formMessage" role="status" aria-live="polite"></div>
+      </form>
+
+      <p class="muted" style="margin-top:1rem;">By submitting this form you agree to be contacted by Vanguard Collaboration Transportation Services LLC for booking and dispatch purposes.</p>
+    </main>
+    <Footer />
+
+    <script>
+      // Progressive-enhanced AJAX submission to Formspree (falls back to normal POST if fetch fails or blocked)
+      (function(){
+        const form = document.getElementById('requestForm');
+        const msg = document.getElementById('formMessage');
+        const action = form.getAttribute('action');
+
+        form.addEventListener('submit', async function(e){
+          e.preventDefault();
+          msg.textContent = '';
+
+          const data = new FormData(form);
+
+          try{
+            const res = await fetch(action, {
+              method: 'POST',
+              body: data,
+              headers: { 'Accept': 'application/json' }
+            });
+
+            if(res.ok){
+              form.reset();
+              msg.innerHTML = '<div class="success">Thanks — your request was submitted. We will contact you soon to confirm.</div>';
+            } else {
+              const json = await res.json().catch(()=>null);
+              const err = json && json.error ? json.error : 'There was a problem submitting the form.';
+              msg.innerHTML = `<div class="error">${err} If the problem persists, please call (612) 250-1613.</div>`;
+            }
+          }catch(err){
+            // If network error or CORS blocked, fall back to normal form submit
+            try{
+              msg.innerHTML = '<div class="muted">Unable to submit via AJAX — attempting standard form submit. If that fails, please call (612) 250-1613.</div>';
+              form.removeEventListener('submit', arguments.callee);
+              form.submit();
+            }catch(e){
+              msg.innerHTML = '<div class="error">Submission failed. Please call (612) 250-1613 to place your request.</div>';
+            }
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
