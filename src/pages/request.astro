@@ -87,12 +87,27 @@ import { PHONE_DISPLAY, PHONE_TEL, HOURS, FORMSPREE_ACTION } from '../consts';
 						<p class="hint">Include companions or caregivers riding along.</p>
 					</div>
 
-					<div class="field full">
+					<div class="field">
 						<label for="tripType">Trip type</label>
 						<select id="tripType" name="trip_type">
 							<option>Round trip</option>
 							<option>One way</option>
-							<option>Recurring (dialysis, therapy, etc.)</option>
+							<option>Recurring (dialysis, therapy, school, etc.)</option>
+						</select>
+					</div>
+					<div class="field">
+						<label for="purpose">Trip purpose</label>
+						<select id="purpose" name="trip_purpose">
+							<option>Medical appointment</option>
+							<option>Dialysis / infusion / recurring treatment</option>
+							<option>Physical, occupational, or speech therapy</option>
+							<option>Therapist / psychologist / counseling</option>
+							<option>Hospital discharge or transfer</option>
+							<option>Motor vehicle accident-related care</option>
+							<option>Daycare / grade school</option>
+							<option>College / university</option>
+							<option>Adult day program / social services</option>
+							<option>Other</option>
 						</select>
 					</div>
 
@@ -103,6 +118,8 @@ import { PHONE_DISPLAY, PHONE_TEL, HOURS, FORMSPREE_ACTION } from '../consts';
 							<option>Medicaid / MHCP</option>
 							<option>Managed care organization (MCO)</option>
 							<option>Waiver program</option>
+							<option>Auto insurance (PIP / no-fault)</option>
+							<option>Attorney / legal case</option>
 							<option>Private pay</option>
 							<option>Other insurance</option>
 						</select>
@@ -110,7 +127,7 @@ import { PHONE_DISPLAY, PHONE_TEL, HOURS, FORMSPREE_ACTION } from '../consts';
 
 					<div class="field full">
 						<label for="details">Additional notes</label>
-						<textarea id="details" name="details" placeholder="Return pickup time, oxygen or equipment, cognitive or communication needs, entrance instructions, anything else we should know."></textarea>
+						<textarea id="details" name="details" placeholder="Return pickup time, oxygen or equipment, cognitive or communication needs, school or facility check-in instructions, anything else we should know."></textarea>
 					</div>
 				</div>
 

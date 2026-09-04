@@ -14,8 +14,8 @@ const isActive = (href: string) => (href === '/' ? current === '/' : current.sta
 				</svg>
 			</span>
 			<span class="brand__text">
-				<span class="brand__name">Vanguard</span>
-				<span class="brand__sub">Collaboration Transportation</span>
+				<span class="brand__line">Vanguard Collaboration</span>
+				<span class="brand__line">Transportation Services</span>
 			</span>
 		</a>
 
@@ -108,19 +108,16 @@ const isActive = (href: string) => (href === '/' ? current === '/' : current.sta
 	.brand__text {
 		display: flex;
 		flex-direction: column;
-		line-height: 1.05;
-	}
-	.brand__name {
+		font-family: var(--font-display);
 		font-weight: 700;
-		font-size: 1.25rem;
-		letter-spacing: 0.04em;
+		font-size: 1.2rem;
+		line-height: 0.98;
+		letter-spacing: 0.035em;
 		text-transform: uppercase;
+		white-space: nowrap;
 	}
-	.brand__sub {
-		font-size: 0.7rem;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.82);
+	.brand__line:last-child {
+		color: rgba(255, 255, 255, 0.86);
 	}
 
 	.nav {
@@ -169,6 +166,7 @@ const isActive = (href: string) => (href === '/' ? current === '/' : current.sta
 		align-items: center;
 		gap: 1rem;
 		flex: none;
+		margin-left: auto;
 	}
 	.header-phone {
 		display: inline-flex;
@@ -263,12 +261,19 @@ const isActive = (href: string) => (href === '/' ? current === '/' : current.sta
 			display: flex;
 		}
 	}
+	@media (max-width: 700px) {
+		.brand__text {
+			font-size: 1.05rem;
+		}
+	}
 	@media (max-width: 520px) {
 		.header-cta {
 			display: none;
 		}
-		.brand__sub {
-			display: none;
+	}
+	@media (max-width: 380px) {
+		.brand__text {
+			font-size: 0.95rem;
 		}
 	}
 </style>

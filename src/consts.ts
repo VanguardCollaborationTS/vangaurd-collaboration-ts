@@ -18,7 +18,7 @@ export const HOURS = [
 	{ days: "Monday – Saturday", time: "7:00 AM – 7:00 PM" },
 	{ days: "Sunday", time: "Closed" },
 ];
-export const LAUNCH_DATE = "October 1, 2026";
+export const FOUNDED_YEAR = "2026";
 
 export const FORMSPREE_ACTION = `https://formspree.io/${EMAIL}`;
 

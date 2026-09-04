@@ -43,7 +43,8 @@ const core = [
 		points: [
 			`Phone-based booking with dispatch at ${PHONE_DISPLAY}`,
 			'Online request form for patients, families, and case managers',
-			'Recurring appointments for dialysis, therapy, oncology, and wound care',
+			'Recurring appointments for dialysis, therapy, counseling, oncology, and wound care',
+			'Standing school-year and semester schedules for student riders',
 			'Upfront, transparent pricing with no hidden fees',
 		],
 	},
@@ -54,6 +55,7 @@ const core = [
 		points: [
 			'Real-time vehicle tracking and accurate arrival estimates',
 			'Automated SMS and phone arrival alerts',
+			'Rider app for live point-A-to-point-B trip tracking (coming soon)',
 			'Dynamic dispatch routing to minimize wait times',
 			'Logged arrival times and performance accountability',
 		],
@@ -65,6 +67,7 @@ const core = [
 		points: [
 			'Full MnDOT Special Transportation Service (STS) compliance',
 			'Ramsey and Hennepin County health department standards',
+			'Interior and exterior vehicle cameras recording every trip',
 			'Commercial auto and general liability coverage meeting NEMT and MCO/Medicaid requirements',
 			'Continuous regulatory monitoring',
 		],
@@ -83,9 +86,10 @@ const core = [
 	{
 		icon: 'globe',
 		title: 'Inclusive, Specialized Passenger Care',
-		intro: 'Our service model prioritizes compassionate care for vulnerable populations.',
+		intro: 'Our service model prioritizes compassionate care for vulnerable populations of every age.',
 		points: [
 			'Drivers trained for dementia, Alzheimer\u2019s, and cognitive impairment',
+			'Child and student transport to daycare, grade school, and college for riders with mobility needs or injuries',
 			'Multi-language support for non-English-speaking passengers and families',
 			'Trauma-informed, dignity-centered interactions',
 		],
@@ -98,6 +102,7 @@ const core = [
 			'Direct MHCP and Medicaid waiver program billing (EW, DD, BI, and more)',
 			'MCO network credentialing and streamlined referrals',
 			'Medicare Advantage, supplemental, and commercial insurance claims',
+			'Auto insurance (PIP / no-fault) and attorney-directed billing for motor vehicle accident clients',
 			'Private-pay, broker, and county contract arrangements',
 		],
 	},
@@ -107,9 +112,12 @@ const destinations = [
 	{ icon: 'stethoscope', title: 'Medical appointments & specialist visits', text: 'Primary care, cardiology, orthopedics, oncology, rheumatology, and all specialty consultations.' },
 	{ icon: 'building', title: 'Hospital discharges & transfers', text: 'Post-acute transport home or to skilled nursing, rehabilitation, or transitional care settings.' },
 	{ icon: 'heart', title: 'Rehabilitation & therapy', text: 'Physical, occupational, and speech-language therapy requiring regular, predictable transport.' },
+	{ icon: 'brain', title: 'Therapist & psychologist appointments', text: 'Counseling, psychology, psychiatry, and behavioral-health visits handled with discretion and consistency.' },
 	{ icon: 'clock', title: 'Dialysis & ongoing treatments', text: 'Recurring rides for dialysis, chemotherapy infusions, wound care, and chronic disease management.' },
-	{ icon: 'users', title: 'Adult day programs & social services', text: 'Community-based day programs, senior centers, and social engagement services.' },
-	{ icon: 'map', title: 'Long-term care visits & errands', text: 'Nursing homes, assisted living, memory care, hospice, plus pharmacy, grocery, and bank trips.' },
+	{ icon: 'bandage', title: 'Motor vehicle accident recovery', text: 'Follow-up care, imaging, physical therapy, and chiropractic visits for MVA clients — with auto-insurance and attorney coordination.' },
+	{ icon: 'school', title: 'Daycares & grade schools', text: 'Safe, dependable rides for children with mobility needs or medical conditions, on standing school-year schedules.' },
+	{ icon: 'graduation', title: 'Colleges & universities', text: 'Campus transportation for students recovering from injuries or surgery who cannot drive or use transit.' },
+	{ icon: 'users', title: 'Day programs, long-term care & errands', text: 'Adult day programs, senior centers, nursing homes, assisted living, memory care, and hospice — plus pharmacy, grocery, and bank trips.' },
 ] as const;
 ---
 
@@ -122,7 +130,7 @@ const destinations = [
 			<p class="eyebrow">Services</p>
 			<h1>Comprehensive medical transportation, done right.</h1>
 			<p class="lead">
-				From wheelchair-accessible rides to recurring dialysis schedules and full billing coordination, every part of our service is built around the needs of medically fragile passengers.
+				From wheelchair-accessible rides to recurring dialysis schedules, school and campus transportation, accident-recovery care, and full billing coordination — every part of our service is built around passengers who need more than a ride.
 			</p>
 		</div>
 	</section>
@@ -170,26 +178,54 @@ const destinations = [
 
 	<!-- Technology -->
 	<section class="section">
-		<div class="container grid grid--2">
-			<div class="card">
-				<div class="card__icon"><Icon name="map" /></div>
-				<h3>Dispatch &amp; real-time management</h3>
-				<ul class="check-list">
-					<li>GPS-enabled vehicle tracking with automated passenger notifications</li>
-					<li>Integrated booking across phone, online, and broker/MCO portals</li>
-					<li>Real-time driver communication for updates and trip-specific instructions</li>
-					<li>Mobile trip documentation, signature verification, and passenger feedback</li>
-				</ul>
+		<div class="container">
+			<div class="head">
+				<p class="eyebrow">Safety &amp; technology</p>
+				<h2>Visibility on every trip</h2>
 			</div>
-			<div class="card">
-				<div class="card__icon"><Icon name="shield" /></div>
-				<h3>Data security &amp; privacy</h3>
-				<ul class="check-list">
-					<li>HIPAA-compliant data management systems</li>
-					<li>Encrypted channels for sensitive passenger information</li>
-					<li>Access controls limiting visibility to trip-specific details</li>
-					<li>Audit logs and compliance monitoring</li>
-				</ul>
+			<div class="grid tech">
+				<div class="card">
+					<div class="card__icon"><Icon name="smartphone" /></div>
+					<h3>Live ride-tracking app <span class="tag">Coming soon</span></h3>
+					<p class="svc-intro">Families, case managers, and facilities will be able to follow the vehicle from point A to point B in real time.</p>
+					<ul class="check-list">
+						<li>Live map of the vehicle from pickup to drop-off</li>
+						<li>Push notifications when the driver is en route, arriving, and complete</li>
+						<li>Shareable trip links for family members and care coordinators</li>
+						<li>Trip history and receipts in one place</li>
+					</ul>
+				</div>
+				<div class="card">
+					<div class="card__icon"><Icon name="camera" /></div>
+					<h3>Cameras inside &amp; outside every vehicle</h3>
+					<p class="svc-intro">Interior and exterior cameras protect passengers and drivers alike.</p>
+					<ul class="check-list">
+						<li>Cabin camera documents securement, assistance, and passenger well-being</li>
+						<li>Forward and exterior cameras record road conditions and incidents</li>
+						<li>Footage supports incident review, insurance claims, and accountability</li>
+						<li>Recordings are access-controlled and retained per privacy policy</li>
+					</ul>
+				</div>
+				<div class="card">
+					<div class="card__icon"><Icon name="map" /></div>
+					<h3>Dispatch &amp; real-time management</h3>
+					<ul class="check-list">
+						<li>GPS-enabled vehicle tracking with automated passenger notifications</li>
+						<li>Integrated booking across phone, online, and broker/MCO portals</li>
+						<li>Real-time driver communication for updates and trip-specific instructions</li>
+						<li>Mobile trip documentation, signature verification, and passenger feedback</li>
+					</ul>
+				</div>
+				<div class="card">
+					<div class="card__icon"><Icon name="shield" /></div>
+					<h3>Data security &amp; privacy</h3>
+					<ul class="check-list">
+						<li>HIPAA-compliant data management systems</li>
+						<li>Encrypted channels for sensitive passenger information</li>
+						<li>Access controls limiting visibility to trip-specific details</li>
+						<li>Audit logs and compliance monitoring</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -239,6 +275,26 @@ const destinations = [
 	}
 	.svc .check-list li {
 		margin-bottom: 0.5rem;
+	}
+	.svc-intro {
+		color: var(--text-soft);
+	}
+	.tech {
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+	}
+	.tag {
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 0.4rem;
+		padding: 0.2rem 0.6rem;
+		border-radius: var(--radius-pill);
+		background: var(--orange);
+		color: var(--white);
+		font-size: var(--fs-xs);
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		white-space: nowrap;
 	}
 
 	.dest {

@@ -30,8 +30,21 @@ const services = [
 const reasons = [
 	{ icon: 'badge', title: 'Trained, credentialed drivers', text: 'Passenger assistance, wheelchair securement, First Aid/CPR, and full background screening.' },
 	{ icon: 'sparkle', title: 'Clean, well-maintained vehicles', text: 'Hospital-grade sanitization between every trip and routine lift, ramp, and mechanical inspections.' },
+	{ icon: 'camera', title: 'Cameras inside & out', text: 'Every vehicle records interior and exterior video for passenger safety, driver accountability, and incident protection.' },
+	{ icon: 'smartphone', title: 'Track your ride, live', text: 'Our rider app (coming soon) lets families and case managers follow the vehicle from pickup to drop-off in real time.' },
 	{ icon: 'clock', title: 'On-time, every time', text: 'GPS-tracked dispatch with arrival alerts so appointments start when they are supposed to.' },
-	{ icon: 'heart', title: 'Dignity first', text: 'Patient, trauma-informed care for elderly riders and those living with cognitive impairment.' },
+	{ icon: 'heart', title: 'Dignity first', text: 'Patient, trauma-informed care for elderly riders, children, and those living with cognitive impairment.' },
+] as const;
+
+const audiences = [
+	{ icon: 'users', label: 'Seniors & elderly riders' },
+	{ icon: 'wheelchair', label: 'Wheelchair & mobility-device users' },
+	{ icon: 'clock', label: 'Dialysis, infusion & recurring treatment patients' },
+	{ icon: 'building', label: 'Hospital discharges & post-surgical patients' },
+	{ icon: 'brain', label: 'Therapist, psychologist & counseling appointments' },
+	{ icon: 'bandage', label: 'Motor vehicle accident recovery clients' },
+	{ icon: 'school', label: 'Daycare & grade-school students' },
+	{ icon: 'graduation', label: 'College students recovering from injuries' },
 ] as const;
 
 const steps = [
@@ -66,6 +79,7 @@ const steps = [
 				<ul class="hero__badges">
 					<li><Icon name="shield" /> MnDOT STS Compliant</li>
 					<li><Icon name="wheelchair" /> Lift &amp; Ramp Equipped</li>
+					<li><Icon name="camera" /> Cameras Inside &amp; Out</li>
 					<li><Icon name="map" /> Roseville, MN</li>
 				</ul>
 			</div>
@@ -106,6 +120,29 @@ const steps = [
 					</article>
 				))}
 			</div>
+		</div>
+	</section>
+
+	<!-- WHO WE SERVE -->
+	<section class="section section--ivory-dark serve">
+		<div class="container">
+			<div class="section-head section-head--center">
+				<div>
+					<p class="eyebrow">Who we serve</p>
+					<h2>Rides for every stage of care — and life</h2>
+					<p class="lead serve__lead">
+						Medical trips are our foundation, but we also get children to daycare and school, students with injuries to campus, accident-recovery clients to treatment, and riders to therapy and counseling.
+					</p>
+				</div>
+			</div>
+			<ul class="serve__grid">
+				{audiences.map((a) => (
+					<li class="serve__item">
+						<span class="serve__icon"><Icon name={a.icon} /></span>
+						<span>{a.label}</span>
+					</li>
+				))}
+			</ul>
 		</div>
 	</section>
 
@@ -334,6 +371,48 @@ const steps = [
 		margin-inline: auto;
 	}
 
+	/* Who we serve */
+	.serve__lead {
+		max-width: 62ch;
+		margin: 1rem auto 0;
+	}
+	.serve__grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1rem;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.serve__item {
+		display: flex;
+		align-items: center;
+		gap: 0.9rem;
+		padding: 1rem 1.15rem;
+		background: var(--white);
+		border: 1px solid var(--line);
+		border-radius: var(--radius);
+		box-shadow: var(--shadow-sm);
+		font-weight: 700;
+		font-size: var(--fs-sm);
+		line-height: 1.3;
+		color: var(--navy);
+	}
+	.serve__icon {
+		display: inline-grid;
+		place-items: center;
+		flex: none;
+		width: 42px;
+		height: 42px;
+		border-radius: 11px;
+		background: var(--orange-tint);
+		color: var(--orange);
+	}
+	.serve__icon svg {
+		width: 22px;
+		height: 22px;
+	}
+
 	/* Why */
 	.why__inner {
 		display: grid;
@@ -346,6 +425,10 @@ const steps = [
 	}
 	.why__copy .lead {
 		margin-bottom: 2rem;
+	}
+	.why__grid {
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+		gap: 1rem;
 	}
 	.why__item {
 		padding: 1.5rem;
@@ -450,6 +533,9 @@ const steps = [
 		.trust__inner {
 			grid-template-columns: repeat(2, 1fr);
 		}
+		.serve__grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
 		.why__inner {
 			grid-template-columns: 1fr;
 		}
@@ -464,6 +550,9 @@ const steps = [
 		}
 		.section-head--center {
 			align-items: center;
+		}
+		.serve__grid {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>

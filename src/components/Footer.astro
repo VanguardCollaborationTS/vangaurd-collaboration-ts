@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, SITE_SHORT, NAV_LINKS, PHONE_DISPLAY, PHONE_TEL, EMAIL, ADDRESS_LINES, HOURS, SERVICE_AREA } from '../consts';
+import { SITE_TITLE, NAV_LINKS, PHONE_DISPLAY, PHONE_TEL, EMAIL, ADDRESS_LINES, HOURS, SERVICE_AREA } from '../consts';
 
 const year = new Date().getFullYear();
 ---
@@ -11,9 +11,12 @@ const year = new Date().getFullYear();
 				<span class="brand__mark" aria-hidden="true">
 					<svg viewBox="0 0 32 32" fill="none"><path d="M4 8h24l-12 18z" fill="currentColor" /></svg>
 				</span>
-				<span class="brand__name">{SITE_SHORT}</span>
+				<span class="brand__text">
+					<span class="brand__line">Vanguard Collaboration</span>
+					<span class="brand__line">Transportation Services</span>
+				</span>
 			</a>
-			<p>Safe, dignified non-emergency medical transportation for elderly, disabled, and vulnerable riders across the Twin Cities.</p>
+			<p>Safe, dignified non-emergency medical and specialized transportation for seniors, riders with disabilities, students, and clients recovering from injury across the Twin Cities.</p>
 			<p class="muted">Serving {SERVICE_AREA}.</p>
 		</div>
 
@@ -85,11 +88,19 @@ const year = new Date().getFullYear();
 		height: 20px;
 		color: var(--white);
 	}
-	.brand__name {
+	.brand__text {
+		display: flex;
+		flex-direction: column;
+		font-family: var(--font-display);
 		font-weight: 700;
 		font-size: 1.1rem;
+		line-height: 0.98;
+		letter-spacing: 0.035em;
 		text-transform: uppercase;
-		letter-spacing: 0.04em;
+		white-space: nowrap;
+	}
+	.brand__line:last-child {
+		color: rgba(255, 255, 255, 0.8);
 	}
 	.footer-brand p {
 		max-width: 38ch;

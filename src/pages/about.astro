@@ -2,11 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { LAUNCH_DATE, ADDRESS_LINES, SERVICE_AREA } from '../consts';
+import { FOUNDED_YEAR, ADDRESS_LINES, SERVICE_AREA } from '../consts';
 
 const facts = [
 	{ icon: 'users', label: 'Owner / Primary Operator', value: 'Paul Gillum' },
-	{ icon: 'calendar', label: 'Start of Operations', value: LAUNCH_DATE },
+	{ icon: 'calendar', label: 'Business Started', value: FOUNDED_YEAR },
 	{ icon: 'building', label: 'Base / Mailing Address', value: ADDRESS_LINES.join(', ') },
 	{ icon: 'map', label: 'Primary Service Area', value: SERVICE_AREA },
 ] as const;
@@ -23,6 +23,22 @@ const faqs = [
 	{
 		q: 'Can you provide same-day service?',
 		a: 'Scheduled trips are prioritized. Same-day requests are handled based on availability and broker rules — call dispatch to check.',
+	},
+	{
+		q: 'Can I track my ride?',
+		a: 'Yes. Dispatch sends arrival alerts by text or phone today, and a rider app that lets families and case managers follow the vehicle live from pickup to drop-off is in development.',
+	},
+	{
+		q: 'Are there cameras in the vehicles?',
+		a: 'Yes. Every vehicle has interior and exterior cameras. Footage protects passengers and drivers, supports incident and insurance review, and is access-controlled under our privacy policy.',
+	},
+	{
+		q: 'Do you transport children and students?',
+		a: 'Yes. We provide rides to daycares, grade schools, and colleges for children and students with mobility needs, medical conditions, or injuries. A parent or guardian arranges the trip — ask dispatch about companion and unaccompanied-minor options.',
+	},
+	{
+		q: 'Do you work with motor vehicle accident (MVA) clients?',
+		a: 'Yes. We transport MVA clients to follow-up care, imaging, therapy, and chiropractic appointments, and coordinate billing with auto insurers (PIP / no-fault), attorneys, and case managers.',
 	},
 	{
 		q: 'How is client privacy handled?',
@@ -57,6 +73,9 @@ const faqs = [
 				<h2>Getting vulnerable riders to care — safely, on time, and with respect.</h2>
 				<p class="lead">
 					To deliver dignified, punctual, and safety-focused transportation for elderly and disabled passengers who require door-to-door service to medical appointments, therapies, dialysis, and hospital discharges.
+				</p>
+				<p>
+					That same standard of care extends to children traveling to daycare and school, college students recovering from injuries, clients healing after a motor vehicle accident, and riders attending therapist or psychologist appointments.
 				</p>
 				<p>
 					We don't compete on price. We compete on reliability, safety, and the kind of professional, compassionate care that gives passengers and their families genuine peace of mind.
@@ -128,7 +147,7 @@ const faqs = [
 				<div class="standard">
 					<div class="standard__icon"><Icon name="sparkle" /></div>
 					<h3>Vehicle standards</h3>
-					<p>Lift and ramp servicing, routine inspections, pre-trip checks, and regular cleaning and sanitization so every vehicle is safe and comfortable.</p>
+					<p>Lift and ramp servicing, routine inspections, pre-trip checks, and regular cleaning and sanitization so every vehicle is safe and comfortable. Interior and exterior cameras record every trip for passenger and driver protection.</p>
 				</div>
 			</div>
 		</div>
