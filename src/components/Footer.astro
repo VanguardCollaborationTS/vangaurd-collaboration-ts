@@ -54,8 +54,8 @@ const year = new Date().getFullYear();
 
 <style>
 	.site-footer {
-		background: var(--navy-dark);
-		color: rgba(255, 255, 255, 0.78);
+		background: linear-gradient(180deg, var(--orange-dark), #a84404);
+		color: rgba(255, 255, 255, 0.86);
 		margin-top: auto;
 	}
 	.footer-grid {
@@ -78,7 +78,7 @@ const year = new Date().getFullYear();
 		width: 36px;
 		height: 36px;
 		border-radius: 9px;
-		background: var(--orange);
+		background: var(--navy);
 	}
 	.brand__mark svg {
 		width: 20px;
@@ -95,14 +95,17 @@ const year = new Date().getFullYear();
 		max-width: 38ch;
 	}
 	.footer-brand .muted {
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(255, 255, 255, 0.65);
 	}
 	h4 {
-		color: var(--orange-light);
+		color: var(--ivory);
 		font-size: var(--fs-xs);
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
 		margin-bottom: 1.1rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid var(--navy);
+		display: inline-block;
 	}
 	.footer-col ul {
 		list-style: none;
@@ -114,10 +117,11 @@ const year = new Date().getFullYear();
 		line-height: 1.5;
 	}
 	.footer-col a {
-		color: rgba(255, 255, 255, 0.82);
+		color: rgba(255, 255, 255, 0.9);
 	}
 	.footer-col a:hover {
-		color: var(--orange-light);
+		color: var(--ivory);
+		text-decoration: underline;
 	}
 	.footer-col strong {
 		color: var(--white);
@@ -126,9 +130,9 @@ const year = new Date().getFullYear();
 		display: block;
 	}
 	.footer-bottom {
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		background: var(--navy);
 		font-size: var(--fs-xs);
-		color: rgba(255, 255, 255, 0.5);
+		color: rgba(255, 255, 255, 0.7);
 	}
 	.footer-bottom__inner {
 		display: flex;

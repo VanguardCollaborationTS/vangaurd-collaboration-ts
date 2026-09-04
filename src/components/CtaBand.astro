@@ -20,7 +20,7 @@ const {
 			<p class="lead">{text}</p>
 		</div>
 		<div class="cta-band__actions">
-			<a href="/request" class="btn btn--primary btn--lg">
+			<a href="/request" class="btn btn--navy btn--lg">
 				Request a Ride
 				<Icon name="arrow" />
 			</a>
@@ -38,8 +38,8 @@ const {
 		overflow: hidden;
 		padding-block: clamp(3rem, 6vw, 5rem);
 		background:
-			radial-gradient(ellipse at 10% 120%, rgba(232, 99, 10, 0.35), transparent 55%),
-			linear-gradient(135deg, var(--navy-dark), var(--navy));
+			radial-gradient(ellipse at 10% 120%, rgba(255, 255, 255, 0.18), transparent 55%),
+			linear-gradient(135deg, var(--orange-dark), var(--orange));
 		color: var(--white);
 	}
 	.cta-band::before {
@@ -50,8 +50,8 @@ const {
 		width: 380px;
 		height: 380px;
 		border-radius: 50%;
-		background: var(--orange);
-		opacity: 0.12;
+		background: var(--navy);
+		opacity: 0.14;
 		filter: blur(20px);
 	}
 	.cta-band__inner {
@@ -66,12 +66,15 @@ const {
 		margin-bottom: 0.6rem;
 	}
 	.lead {
-		color: rgba(255, 255, 255, 0.78);
+		color: rgba(255, 255, 255, 0.88);
 		margin: 0;
 		max-width: 52ch;
 	}
 	.eyebrow {
-		color: var(--orange-light);
+		color: var(--ivory);
+	}
+	.eyebrow::before {
+		background: var(--navy);
 	}
 	.cta-band__actions {
 		display: flex;

@@ -54,7 +54,7 @@ const steps = [
 					Wheelchair-accessible and ambulatory rides to medical appointments, dialysis, therapy, and hospital discharges across the Minneapolis–St. Paul metro — with door-through-door assistance on every trip.
 				</p>
 				<div class="hero__actions">
-					<a href="/request" class="btn btn--primary btn--lg">
+					<a href="/request" class="btn btn--navy btn--lg">
 						Request a Ride
 						<Icon name="arrow" />
 					</a>
@@ -110,7 +110,7 @@ const steps = [
 	</section>
 
 	<!-- WHY US -->
-	<section class="section section--navy why">
+	<section class="section section--orange why">
 		<div class="container why__inner">
 			<div class="why__copy">
 				<p class="eyebrow">Why Vanguard</p>
@@ -118,7 +118,7 @@ const steps = [
 				<p class="lead">
 					Standard curb-to-curb transport leaves vulnerable riders unassisted at the moments that matter most. We close that gap — from the front door to the exam room and back again.
 				</p>
-				<a href="/about" class="btn btn--primary">About our approach <Icon name="arrow" /></a>
+				<a href="/about" class="btn btn--navy">About our approach <Icon name="arrow" /></a>
 			</div>
 			<div class="grid grid--2 why__grid">
 				{reasons.map((r) => (
@@ -166,12 +166,12 @@ const steps = [
 				</ul>
 				<p class="muted">Extended hours and special arrangements available by request and coordinator approval.</p>
 			</div>
-			<div class="card card--navy info__card">
+			<div class="card card--orange info__card">
 				<div class="card__icon"><Icon name="map" /></div>
 				<h3>Service area</h3>
 				<p>{SERVICE_AREA}.</p>
 				<p>Based in Roseville, MN — serving clinics, hospitals, dialysis centers, rehabilitation facilities, adult day programs, and residences throughout the metro.</p>
-				<a href="/contact" class="btn btn--primary">Contact us <Icon name="arrow" /></a>
+				<a href="/contact" class="btn btn--navy">Contact us <Icon name="arrow" /></a>
 			</div>
 		</div>
 	</section>
@@ -185,8 +185,8 @@ const steps = [
 		position: relative;
 		overflow: hidden;
 		background:
-			radial-gradient(ellipse at 20% 0%, rgba(232, 99, 10, 0.35), transparent 50%),
-			linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 60%, #22355c 100%);
+			radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.2), transparent 50%),
+			linear-gradient(160deg, var(--orange-dark) 0%, var(--orange) 55%, var(--orange-light) 130%);
 		color: var(--white);
 	}
 	.hero::before {
@@ -198,7 +198,7 @@ const steps = [
 		max-width: 720px;
 		max-height: 720px;
 		border-radius: 50%;
-		border: 90px solid rgba(232, 99, 10, 0.12);
+		border: 90px solid rgba(27, 42, 74, 0.12);
 		pointer-events: none;
 	}
 	.hero__inner {
@@ -215,17 +215,20 @@ const steps = [
 		max-width: 14ch;
 	}
 	.hl {
-		color: var(--orange-light);
+		color: var(--navy);
 		position: relative;
 		white-space: nowrap;
 	}
 	.hero .lead {
-		color: rgba(255, 255, 255, 0.82);
+		color: rgba(255, 255, 255, 0.9);
 		max-width: 54ch;
 		margin-bottom: 2rem;
 	}
 	.hero .eyebrow {
-		color: var(--orange-light);
+		color: var(--ivory);
+	}
+	.hero .eyebrow::before {
+		background: var(--navy);
 	}
 	.hero__actions {
 		display: flex;
@@ -242,7 +245,7 @@ const steps = [
 		margin: 0;
 		font-size: var(--fs-sm);
 		font-weight: 700;
-		color: rgba(255, 255, 255, 0.78);
+		color: rgba(255, 255, 255, 0.9);
 	}
 	.hero__badges li {
 		display: inline-flex;
@@ -252,7 +255,7 @@ const steps = [
 	.hero__badges svg {
 		width: 18px;
 		height: 18px;
-		color: var(--orange-light);
+		color: var(--navy);
 	}
 
 	.hero__media {
@@ -262,14 +265,14 @@ const steps = [
 		position: relative;
 		border-radius: var(--radius-lg);
 		overflow: hidden;
-		box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.08);
+		box-shadow: var(--shadow-lg), 0 0 0 4px rgba(255, 255, 255, 0.35);
 		transform: rotate(-1.5deg);
 	}
 	.hero__frame::after {
 		content: '';
 		position: absolute;
 		inset: 0;
-		background: linear-gradient(180deg, transparent 60%, rgba(17, 28, 51, 0.45));
+		background: linear-gradient(180deg, transparent 65%, rgba(194, 79, 5, 0.35));
 		pointer-events: none;
 	}
 	.hero__frame img {
@@ -281,7 +284,7 @@ const steps = [
 
 	/* Trust strip */
 	.trust {
-		background: var(--orange);
+		background: var(--navy);
 		color: var(--white);
 	}
 	.trust__inner {
@@ -347,8 +350,8 @@ const steps = [
 	.why__item {
 		padding: 1.5rem;
 		border-radius: var(--radius);
-		background: rgba(255, 255, 255, 0.05);
-		border: 1px solid rgba(255, 255, 255, 0.08);
+		background: rgba(255, 255, 255, 0.12);
+		border: 1px solid rgba(255, 255, 255, 0.2);
 	}
 	.why__item h3 {
 		font-size: var(--fs-lg);
@@ -357,7 +360,7 @@ const steps = [
 	.why__item p {
 		margin: 0;
 		font-size: var(--fs-sm);
-		color: rgba(255, 255, 255, 0.72);
+		color: rgba(255, 255, 255, 0.88);
 	}
 	.why__icon {
 		display: inline-grid;
@@ -366,7 +369,7 @@ const steps = [
 		height: 46px;
 		margin-bottom: 1rem;
 		border-radius: 12px;
-		background: var(--orange);
+		background: var(--navy);
 		color: var(--white);
 	}
 	.why__icon svg {
