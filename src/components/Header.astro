@@ -1,12 +1,9 @@
 ---
 import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
 ---
 
 <header>
 	<nav>
-		<div class="brand">
-		</div>
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
@@ -41,8 +38,6 @@ import { SITE_TITLE } from '../consts';
 		gap: 1rem;
 		padding: 0 1em;
 	}
-	.brand{ display:flex; align-items:center; gap:0.75rem }
-	.company-name{ font-weight:700; font-size:1rem; color:var(--black); }
 	.internal-links{ display:flex; gap:0.5rem; align-items:center }
 	.internal-links a{ padding: 0.75rem 0.5rem }
 	.social-links{ display:flex; gap:0.5rem; align-items:center }
