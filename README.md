@@ -4,7 +4,7 @@ Marketing website for Vanguard Collaboration Transportation Services LLC — a n
 
 Built with [Astro](https://astro.build) and deployed to Cloudflare Workers.
 
-**Live site:** https://vangaurd-collaboration-ts.yawriv.workers.dev
+**Live site:** https://vanguardcollaborationts.com (the `*.workers.dev` URL and `www.` redirect here)
 
 ## Pages
 

@@ -6,11 +6,14 @@ import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://vangaurd-collaboration-ts.yawriv.workers.dev",
+	site: "https://vanguardcollaborationts.com",
 	integrations: [sitemap()],
 	adapter: cloudflare({
 		platformProxy: {
 			enabled: true,
+		},
+		workerEntryPoint: {
+			path: "src/worker.ts",
 		},
 	}),
 });
