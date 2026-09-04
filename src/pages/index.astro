@@ -73,13 +73,6 @@ const steps = [
 				<div class="hero__frame">
 					<img src="/van-hero.png" alt="Vanguard Collaboration wheelchair-accessible van with rear ramp deployed outside a medical building" width="1408" height="768" loading="eager" fetchpriority="high" />
 				</div>
-				<div class="hero__chip">
-					<Icon name="clock" />
-					<div>
-						<strong>Mon – Sat</strong>
-						<span>7:00 AM – 7:00 PM</span>
-					</div>
-				</div>
 			</div>
 		</div>
 	</section>
@@ -285,32 +278,6 @@ const steps = [
 		aspect-ratio: 16 / 10;
 		object-fit: cover;
 	}
-	.hero__chip {
-		position: absolute;
-		left: -1rem;
-		bottom: -1.25rem;
-		display: flex;
-		align-items: center;
-		gap: 0.8rem;
-		padding: 0.9rem 1.2rem;
-		background: var(--ivory);
-		color: var(--navy);
-		border-radius: var(--radius);
-		box-shadow: var(--shadow-md);
-	}
-	.hero__chip svg {
-		width: 28px;
-		height: 28px;
-		color: var(--orange);
-	}
-	.hero__chip strong {
-		display: block;
-		line-height: 1.1;
-	}
-	.hero__chip span {
-		font-size: var(--fs-sm);
-		color: var(--ink-soft);
-	}
 
 	/* Trust strip */
 	.trust {
@@ -494,10 +461,6 @@ const steps = [
 		}
 		.section-head--center {
 			align-items: center;
-		}
-		.hero__chip {
-			left: 0.75rem;
-			bottom: -1rem;
 		}
 	}
 </style>
