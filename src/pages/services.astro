@@ -1,186 +1,309 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { PHONE_DISPLAY, PHONE_TEL, HOURS, SERVICE_AREA } from '../consts';
+
+const core = [
+	{
+		icon: 'door',
+		title: 'Door-Through-Door Assistance',
+		intro:
+			'Standard curb-to-curb transportation leaves vulnerable riders unassisted at critical junctures. We go further: drivers assist passengers from their residences, escort them into the vehicle with proper securement, and accompany them directly into medical facilities, reception areas, or appointment rooms.',
+		points: ['Eliminates transfer liability gaps', 'Reduces fall and injury risk', 'Dignity and peace of mind for passengers and families'],
+	},
+	{
+		icon: 'wheelchair',
+		title: 'Mobility Equipment & Fleet Versatility',
+		intro: 'Our fleet is equipped to accommodate diverse passenger mobility profiles.',
+		points: [
+			'Hydraulic lift systems for non-ambulatory and wheelchair-dependent passengers',
+			'Low-incline, ADA-compliant ramps for passengers with limited mobility or balance concerns',
+			'4-point Q\u2019Straint certified wheelchair securement meeting MnDOT STS restraint standards',
+			'Stretcher and non-ambulatory configurations for supine patient transport',
+			'Climate-controlled interiors, grab bars, and comfort seating for extended trips',
+		],
+	},
+	{
+		icon: 'badge',
+		title: 'Rigorous Driver Qualifications',
+		intro: 'Every operator is credentialed well beyond basic commercial licensing.',
+		points: [
+			'Passenger Assistance Techniques (PAT/PASS) certification',
+			'Current First Aid & CPR certification (AHA or Red Cross)',
+			'Defensive driving and route-optimization training',
+			'OSHA bloodborne pathogen and infection-control protocols',
+			'Comprehensive background checks, MVR verification, and periodic recertification',
+		],
+	},
+	{
+		icon: 'calendar',
+		title: 'Flexible Scheduling & Multi-Channel Booking',
+		intro: 'Accessibility and ease of use are central to how we operate.',
+		points: [
+			`Phone-based booking with dispatch at ${PHONE_DISPLAY}`,
+			'Online request form for patients, families, and case managers',
+			'Recurring appointments for dialysis, therapy, oncology, and wound care',
+			'Upfront, transparent pricing with no hidden fees',
+		],
+	},
+	{
+		icon: 'clock',
+		title: 'On-Time Performance & GPS Tracking',
+		intro: 'Medical appointments are time-sensitive. We use enterprise-grade fleet management to keep them on schedule.',
+		points: [
+			'Real-time vehicle tracking and accurate arrival estimates',
+			'Automated SMS and phone arrival alerts',
+			'Dynamic dispatch routing to minimize wait times',
+			'Logged arrival times and performance accountability',
+		],
+	},
+	{
+		icon: 'shield',
+		title: 'Compliance, Regulatory Rigor & Insurance',
+		intro: 'We operate within a comprehensive regulatory and insurance framework.',
+		points: [
+			'Full MnDOT Special Transportation Service (STS) compliance',
+			'Ramsey and Hennepin County health department standards',
+			'Commercial auto and general liability coverage meeting NEMT and MCO/Medicaid requirements',
+			'Continuous regulatory monitoring',
+		],
+	},
+	{
+		icon: 'sparkle',
+		title: 'Cleanliness & Infection Control',
+		intro: 'Immunocompromised and post-surgical passengers require rigorous hygiene standards.',
+		points: [
+			'Hospital-grade surface disinfection between every passenger',
+			'Climate and air-quality management',
+			'PPE available for high-risk trips',
+			'Routine mechanical, HVAC, and upholstery maintenance',
+		],
+	},
+	{
+		icon: 'globe',
+		title: 'Inclusive, Specialized Passenger Care',
+		intro: 'Our service model prioritizes compassionate care for vulnerable populations.',
+		points: [
+			'Drivers trained for dementia, Alzheimer\u2019s, and cognitive impairment',
+			'Multi-language support for non-English-speaking passengers and families',
+			'Trauma-informed, dignity-centered interactions',
+		],
+	},
+	{
+		icon: 'receipt',
+		title: 'Billing & Insurance Coordination',
+		intro: 'We manage multi-payer billing so administrative complexity never becomes a barrier to care.',
+		points: [
+			'Direct MHCP and Medicaid waiver program billing (EW, DD, BI, and more)',
+			'MCO network credentialing and streamlined referrals',
+			'Medicare Advantage, supplemental, and commercial insurance claims',
+			'Private-pay, broker, and county contract arrangements',
+		],
+	},
+] as const;
+
+const destinations = [
+	{ icon: 'stethoscope', title: 'Medical appointments & specialist visits', text: 'Primary care, cardiology, orthopedics, oncology, rheumatology, and all specialty consultations.' },
+	{ icon: 'building', title: 'Hospital discharges & transfers', text: 'Post-acute transport home or to skilled nursing, rehabilitation, or transitional care settings.' },
+	{ icon: 'heart', title: 'Rehabilitation & therapy', text: 'Physical, occupational, and speech-language therapy requiring regular, predictable transport.' },
+	{ icon: 'clock', title: 'Dialysis & ongoing treatments', text: 'Recurring rides for dialysis, chemotherapy infusions, wound care, and chronic disease management.' },
+	{ icon: 'users', title: 'Adult day programs & social services', text: 'Community-based day programs, senior centers, and social engagement services.' },
+	{ icon: 'map', title: 'Long-term care visits & errands', text: 'Nursing homes, assisted living, memory care, hospice, plus pharmacy, grocery, and bank trips.' },
+] as const;
 ---
 
 <Layout
-	title="Services Offered - Vanguard Collaboration Transportation Services"
-	description="Comprehensive non-emergency medical transportation (NEMT) and Special Transportation Service (STS) for the Twin Cities."
+	title="Services"
+	description="Wheelchair-accessible and ambulatory NEMT, door-through-door assistance, recurring dialysis and therapy rides, and multi-payer billing coordination across the Twin Cities."
 >
-	<style>
-		:root{
-			--bg: ivory;
-			--accent: #cc5500;
-			--text: #111;
-		}
-		body{ background: var(--bg); color:var(--text); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; }
-		main{ max-width:900px; margin:3rem auto; padding:2rem; }
-		h1{ color:var(--accent); }
-		h2{ color:var(--accent); }
-		h3{ color:var(--accent); }
-	</style>
+	<section class="page-hero">
+		<div class="container">
+			<p class="eyebrow">Services</p>
+			<h1>Comprehensive medical transportation, done right.</h1>
+			<p class="lead">
+				From wheelchair-accessible rides to recurring dialysis schedules and full billing coordination, every part of our service is built around the needs of medically fragile passengers.
+			</p>
+		</div>
+	</section>
 
-	<h1>Services Offered</h1>
+	<!-- Core services -->
+	<section class="section">
+		<div class="container">
+			<div class="head">
+				<p class="eyebrow">Core offerings</p>
+				<h2>What sets Vanguard apart</h2>
+			</div>
+			<div class="grid grid--3">
+				{core.map((s) => (
+					<article class="card svc">
+						<div class="card__icon"><Icon name={s.icon} /></div>
+						<h3>{s.title}</h3>
+						<p>{s.intro}</p>
+						<ul class="check-list">
+							{s.points.map((p) => <li>{p}</li>)}
+						</ul>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
 
-	<h2>Core Service Offerings</h2>
+	<!-- Destinations -->
+	<section class="section section--navy">
+		<div class="container">
+			<div class="head">
+				<p class="eyebrow">Where we take you</p>
+				<h2>Destination coverage</h2>
+			</div>
+			<div class="grid grid--3">
+				{destinations.map((d) => (
+					<div class="dest">
+						<div class="dest__icon"><Icon name={d.icon} /></div>
+						<h3>{d.title}</h3>
+						<p>{d.text}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
 
-	<h3>Door-Through-Door Assistance</h3>
-	<p>
-		Standard curb-to-curb transportation leaves vulnerable riders—particularly elderly, disabled, and post-discharge patients—unassisted at critical junctures. Vanguard Collaboration differentiates by offering comprehensive door-through-door service: drivers assist passengers from their residences, escort them into the vehicle with proper securement, and accompany them directly into medical facilities, reception areas, or appointment rooms. This approach eliminates transfer liability gaps, reduces fall and injury risk, and provides dignity and peace of mind to passengers and their families during vulnerable transitions.
-	</p>
+	<!-- Technology -->
+	<section class="section">
+		<div class="container grid grid--2">
+			<div class="card">
+				<div class="card__icon"><Icon name="map" /></div>
+				<h3>Dispatch &amp; real-time management</h3>
+				<ul class="check-list">
+					<li>GPS-enabled vehicle tracking with automated passenger notifications</li>
+					<li>Integrated booking across phone, online, and broker/MCO portals</li>
+					<li>Real-time driver communication for updates and trip-specific instructions</li>
+					<li>Mobile trip documentation, signature verification, and passenger feedback</li>
+				</ul>
+			</div>
+			<div class="card">
+				<div class="card__icon"><Icon name="shield" /></div>
+				<h3>Data security &amp; privacy</h3>
+				<ul class="check-list">
+					<li>HIPAA-compliant data management systems</li>
+					<li>Encrypted channels for sensitive passenger information</li>
+					<li>Access controls limiting visibility to trip-specific details</li>
+					<li>Audit logs and compliance monitoring</li>
+				</ul>
+			</div>
+		</div>
+	</section>
 
-	<h3>Multi-Modal Mobility Equipment & Fleet Versatility</h3>
-	<p>
-		Our fleet maintains operational versatility to accommodate diverse passenger mobility profiles:
-	</p>
-	<ul>
-		<li><strong>Hydraulic Lift Systems:</strong> Full-height wheelchair lift mechanisms enabling safe, independent or assisted boarding for non-ambulatory or wheelchair-dependent passengers.</li>
-		<li><strong>Low-Incline Ramp Deployment:</strong> Gradual-grade ramps (meeting ADA accessibility standards) for passengers with limited mobility, arthritis, or balance concerns who can transfer with minimal assistance.</li>
-		<li><strong>Advanced Wheelchair Securement:</strong> 4-point tie-down systems (Q'Straint certified) with redundant safety mechanisms, ensuring compliance with MnDOT STS vehicle restraint standards and providing secure transport for wheelchair users.</li>
-		<li><strong>Stretcher & Non-Ambulatory Capacity:</strong> Vehicle configurations equipped for supine patient transport, enabling service to post-surgical, immobilized, or critically frail passengers requiring hospital-grade transport standards.</li>
-		<li><strong>Climate Control & Comfort Features:</strong> Temperature-regulated interiors, accessible grab bars, and seating designed for extended comfort, particularly important for dialysis patients, immunocompromised individuals, and those requiring stable thermal environments.</li>
-	</ul>
+	<!-- Area + hours -->
+	<section class="section section--ivory-dark">
+		<div class="container area">
+			<div>
+				<p class="eyebrow">Service area &amp; hours</p>
+				<h2>Serving the Twin Cities metro</h2>
+				<p class="lead">{SERVICE_AREA}.</p>
+				<p>Extended hours and emergency transport arrangements are available by special request and coordinator approval.</p>
+			</div>
+			<div class="card area__card">
+				<h3>Hours of operation</h3>
+				<ul class="hours">
+					{HOURS.map((h) => (
+						<li><span>{h.days}</span><strong>{h.time}</strong></li>
+					))}
+				</ul>
+				<div class="area__actions">
+					<a href="/request" class="btn btn--primary">Request a ride <Icon name="arrow" /></a>
+					<a href={`tel:${PHONE_TEL}`} class="btn btn--outline"><Icon name="phone" /> {PHONE_DISPLAY}</a>
+				</div>
+				<p class="muted">Healthcare facilities and case managers: contact us directly to discuss recurring trip arrangements, bulk service agreements, and dedicated account management.</p>
+			</div>
+		</div>
+	</section>
 
-	<h3>Rigorous Driver Qualifications & Credentialing</h3>
-	<p>
-		Vanguard Collaboration standardizes driver qualifications beyond basic commercial licensing. All operators complete or maintain:
-	</p>
-	<ul>
-		<li><strong>Passenger Assistance Techniques (PAT/PASS Certification):</strong> Specialized training in safe body mechanics, transfer protocols, fall prevention, and passenger dignity during mobility assistance.</li>
-		<li><strong>First Aid & CPR Certification:</strong> Current certification (minimum American Heart Association or Red Cross standard) enabling rapid response to medical emergencies during transport.</li>
-		<li><strong>Defensive Driving & Route Optimization:</strong> Advanced driver training reducing accident risk, ensuring smooth acceleration/braking to protect medically fragile passengers, and optimizing routes for on-time performance.</li>
-		<li><strong>Bloodborne Pathogen & Infection Control Protocols:</strong> Training in OSHA bloodborne pathogen standards, personal protective equipment (PPE) use, and vehicle sanitation procedures to protect both passengers and drivers.</li>
-		<li><strong>Background Screening & Ongoing Compliance:</strong> Comprehensive criminal background checks, motor vehicle record verification, and periodic recertification ensuring passenger safety and regulatory compliance.</li>
-	</ul>
-
-	<h3>Transparent, Flexible Scheduling & Multi-Channel Booking</h3>
-	<p>
-		Accessibility and ease of use are central to Vanguard Collaboration's operational model. We provide multiple booking channels tailored to different user profiles:
-	</p>
-	<ul>
-		<li><strong>Phone-Based Booking:</strong> Direct contact with dispatch and scheduling staff at (612) 250-1613 enables real-time conversation, clarification of mobility needs, and urgent trip arrangements.</li>
-		<li><strong>Online Portal & Request Forms:</strong> Web-based booking tools allow patients, families, and case managers to submit trip details asynchronously, with automated confirmations and pricing estimates.</li>
-		<li><strong>Recurring Subscription Appointments:</strong> Structured, recurring trip scheduling for regular medical treatments—dialysis (typically 3x weekly), physical/occupational therapy sessions, radiation oncology courses, wound care, and chronic disease management—reducing administrative friction and ensuring reliable, consistent transport.</li>
-		<li><strong>Upfront Transparent Pricing:</strong> Clear, itemized cost structures based on distance, mobility type, time of day, and trip frequency, with no hidden fees. Patients and case managers receive detailed quotes before commitment.</li>
-	</ul>
-
-	<h3>On-Time Performance & Real-Time GPS Tracking</h3>
-	<p>
-		Medical appointments are time-sensitive; missed or late transport directly impacts clinical outcomes, medication schedules, and patient compliance. Vanguard Collaboration utilizes enterprise-grade GPS fleet management with:
-	</p>
-	<ul>
-		<li><strong>Real-Time Vehicle Tracking:</strong> Continuous GPS positioning enabling dispatch to monitor vehicle locations, optimize routing, and provide accurate arrival estimates.</li>
-		<li><strong>Automated SMS & Phone Alerts:</strong> Passengers, families, and facilities receive automated notifications with precise arrival time windows (e.g., "Driver will arrive in 12 minutes"), reducing anxiety and enabling coordination with medical staff.</li>
-		<li><strong>Dispatch Optimization:</strong> Dynamic routing algorithms minimize wait times, consolidate trips when possible, and ensure predictable, reliable service for time-critical medical appointments.</li>
-		<li><strong>Performance Tracking & Accountability:</strong> Logged arrival times, trip confirmations, and driver performance metrics ensure consistent adherence to scheduling commitments.</li>
-	</ul>
-
-	<h3>State Compliance, Regulatory Rigor & Insurance Coverage</h3>
-	<p>
-		Vanguard Collaboration operates within a comprehensive regulatory and insurance framework:
-	</p>
-	<ul>
-		<li><strong>MnDOT Special Transportation Service (STS) Compliance:</strong> Full adherence to Minnesota Department of Transportation STS standards governing vehicle safety, driver qualifications, passenger assistance protocols, and service delivery for special needs populations.</li>
-		<li><strong>Local Health Department Certifications:</strong> Compliance with Ramsey County and Hennepin County health department requirements for sanitization, infection control, and public health standards.</li>
-		<li><strong>Commercial Auto Liability & General Liability Insurance:</strong> Comprehensive coverage protecting passengers, drivers, and the business against injury claims, property damage, and operational liability. Policies meet NEMT industry standards and MCO/Medicaid requirements.</li>
-		<li><strong>Continuous Regulatory Monitoring:</strong> Ongoing review of state and federal transportation regulations to ensure sustained compliance and rapid adaptation to policy changes.</li>
-	</ul>
-
-	<h3>Comprehensive Cleanliness & Infection Control Protocols</h3>
-	<p>
-		Immunocompromised patients, post-surgical individuals, and those with contagious conditions require rigorous hygiene standards. Every vehicle undergoes:
-	</p>
-	<ul>
-		<li><strong>Inter-Trip Sanitization:</strong> Surface disinfection using hospital-grade cleaners between every passenger to prevent pathogen transmission.</li>
-		<li><strong>Climate Control & Air Quality:</strong> Temperature and humidity management preventing bacterial/viral growth and ensuring comfort for patients sensitive to environmental conditions.</li>
-		<li><strong>Personal Protective Equipment (PPE) Availability:</strong> Drivers equipped with gloves, masks, and sanitizing supplies for high-risk trips or immunocompromised passengers.</li>
-		<li><strong>Vehicle Maintenance & Inspection Protocols:</strong> Regular mechanical inspections, HVAC system cleaning, and upholstery treatment ensuring fleet sanitation and reliability.</li>
-	</ul>
-
-	<h3>Diverse Destination Coverage & Service Scope</h3>
-	<p>
-		Vanguard Collaboration transports passengers across a full spectrum of medical and social service needs:
-	</p>
-	<ul>
-		<li><strong>Medical Appointments & Specialist Visits:</strong> Primary care, cardiology, orthopedics, oncology, rheumatology, and all specialty medical consultations.</li>
-		<li><strong>Hospital Discharges & Inter-Facility Transfers:</strong> Post-acute care transport, including discharge to home, skilled nursing facilities, rehabilitation centers, or transitional care settings.</li>
-		<li><strong>Rehabilitation & Therapeutic Services:</strong> Physical therapy, occupational therapy, speech-language pathology, and other rehabilitative treatments requiring regular, predictable transport.</li>
-		<li><strong>Dialysis & Ongoing Medical Treatments:</strong> Reliable, recurring transport for three-times-weekly dialysis sessions, chemotherapy infusions, wound care clinics, and other chronic disease management appointments.</li>
-		<li><strong>Adult Day Programs & Social Services:</strong> Transport to community-based adult day programs, senior centers, and social engagement services supporting healthy aging and social connection.</li>
-		<li><strong>Long-Term Care Visits & Facility-Based Services:</strong> Transport to nursing homes, assisted living, memory care facilities, and hospice care settings for family visits and inter-facility care coordination.</li>
-		<li><strong>Personal Errands & Essential Services:</strong> Pharmacy pickups, grocery shopping assistance, bank visits, and other essential errands supporting independent living for mobility-limited individuals.</li>
-	</ul>
-
-	<h3>Bilingual Support & Specialized Patient Handling</h3>
-	<p>
-		Vanguard Collaboration's service model prioritizes inclusivity and compassionate care for vulnerable populations:
-	</p>
-	<ul>
-		<li><strong>Cognitive Impairment Expertise:</strong> Drivers trained in patient handling techniques for passengers with dementia, Alzheimer's disease, mild cognitive impairment, and other neurodegenerative conditions. Training emphasizes patience, consistent communication, redirection strategies, and safety protocols for behavioral or wandering concerns.</li>
-		<li><strong>Multi-Language Support:</strong> Bilingual drivers and scheduling staff enabling communication with non-English-speaking passengers and families, ensuring informed consent, clear instructions, and culturally responsive care.</li>
-		<li><strong>Trauma-Informed Care Approach:</strong> Recognition of passenger anxiety, pain, and vulnerability during medical transport; staff training in de-escalation, reassurance, and dignity-centered interactions.</li>
-	</ul>
-
-	<h3>Seamless Billing & Insurance Coordination</h3>
-	<p>
-		Administrative complexity is a significant barrier to healthcare access. Vanguard Collaboration manages multi-payer billing coordination:
-	</p>
-	<ul>
-		<li><strong>Medicaid & Waiver Program Billing:</strong> Direct billing to Minnesota Health Care Programs (MHCP) and various Medicaid waiver programs (elderly waiver, disability waiver, brain injury waiver, etc.) with proper authorization verification and prior-approval management.</li>
-		<li><strong>Managed Care Organization (MCO) Credentialing:</strong> Network participation with MCOs serving Medicaid managed care populations, enabling streamlined referrals and billing through health plan systems.</li>
-		<li><strong>Private Insurance Coordination:</strong> Submission of claims to Medicare Advantage, supplemental insurance, and commercial health plans with proper coding and documentation.</li>
-		<li><strong>Private-Pay & Out-of-Pocket Arrangements:</strong> Direct billing to individuals or families, with flexible payment options (credit card, invoice, check) and transparent cost communication.</li>
-		<li><strong>Broker & County Contract Management:</strong> Direct service delivery and billing relationships with transportation brokers, county aging services, and other government contract partners.</li>
-		<li><strong>Administrative Burden Reduction:</strong> Drivers equipped with mobile verification tools, receipt printing, and trip documentation reducing patient/family paperwork while maintaining compliance and audit trails.</li>
-	</ul>
-
-	<h2>Technology & Operational Infrastructure</h2>
-
-	<h3>Dispatch & Real-Time Management Systems</h3>
-	<p>
-		Vanguard Collaboration deploys professional-grade fleet management technology:
-	</p>
-	<ul>
-		<li>GPS-enabled vehicle tracking with automated passenger notifications</li>
-		<li>Integrated booking platform accepting phone, online, and broker/MCO portal requests</li>
-		<li>Driver communication systems enabling real-time updates, emergency alerts, and trip-specific instructions</li>
-		<li>Mobile apps for drivers capturing trip documentation, signature verification, and passenger feedback</li>
-	</ul>
-
-	<h3>Data Security & Privacy Compliance</h3>
-	<p>
-		Protected health information (PHI) and personally identifiable information (PII) are secured through:
-	</p>
-	<ul>
-		<li>HIPAA-compliant data management systems</li>
-		<li>Encrypted communication channels for sensitive passenger information</li>
-		<li>Access controls limiting driver and staff visibility to trip-specific details only</li>
-		<li>Audit logs and compliance monitoring for regulatory requirements</li>
-	</ul>
-
-	<h2>Service Area & Operational Scope</h2>
-	<p>
-		<strong>Primary Service Area:</strong> Hennepin County, Ramsey County, and the greater Twin Cities metropolitan area (Minneapolis–St. Paul region).
-	</p>
-	<p>
-		<strong>Hours of Operations:</strong>
-	</p>
-	<ul>
-		<li>Monday–Saturday: 7:00 AM – 7:00 PM</li>
-		<li>Sunday: Closed</li>
-	</ul>
-	<p>
-		Extended hours and emergency transport arrangements available by special request and coordinator approval.
-	</p>
-
-	<h2>How to Request Transportation</h2>
-	<ul>
-		<li><strong>Phone:</strong> <a href="tel:+16122501613">(612) 250-1613</a></li>
-		<li><strong>Online Request Form:</strong> <a href="/request">Submit a request</a></li>
-		<li><strong>For Healthcare Facilities & Case Managers:</strong> Contact us directly to discuss recurring trip arrangements, bulk service agreements, and dedicated account management.</li>
-	</ul>
-
-	<p style="margin-top:2rem; font-style:italic;">
-		Vanguard Collaboration Transportation Services LLC is committed to delivering safe, dignified, and professional medical transportation that removes barriers to healthcare access for elderly, disabled, and vulnerable populations across the Twin Cities region.
-	</p>
-
+	<CtaBand />
 </Layout>
+
+<style>
+	.head {
+		margin-bottom: 2.5rem;
+	}
+	.head h2 {
+		margin-bottom: 0;
+		max-width: 24ch;
+	}
+	.svc p {
+		color: var(--text-soft);
+		font-size: var(--fs-sm);
+	}
+	.svc .check-list {
+		font-size: var(--fs-sm);
+	}
+	.svc .check-list li {
+		margin-bottom: 0.5rem;
+	}
+
+	.dest {
+		padding: 1.5rem;
+		border-radius: var(--radius);
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+	.dest__icon {
+		display: inline-grid;
+		place-items: center;
+		width: 46px;
+		height: 46px;
+		margin-bottom: 1rem;
+		border-radius: 12px;
+		background: var(--orange);
+		color: var(--white);
+	}
+	.dest__icon svg {
+		width: 24px;
+		height: 24px;
+	}
+	.dest h3 {
+		font-size: var(--fs-lg);
+		margin-bottom: 0.4rem;
+	}
+	.dest p {
+		margin: 0;
+		font-size: var(--fs-sm);
+		color: rgba(255, 255, 255, 0.72);
+	}
+
+	.area {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: clamp(2rem, 5vw, 4rem);
+		align-items: center;
+	}
+	.area h2 {
+		max-width: 18ch;
+	}
+	.hours {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1.5rem;
+	}
+	.hours li {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.7rem 0;
+		border-bottom: 1px dashed var(--line);
+	}
+	.area__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-bottom: 1.25rem;
+	}
+	.area__card .muted {
+		margin: 0;
+	}
+	@media (max-width: 900px) {
+		.area {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

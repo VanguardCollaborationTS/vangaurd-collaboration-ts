@@ -1,0 +1,90 @@
+---
+import Icon from './Icon.astro';
+import { PHONE_DISPLAY, PHONE_TEL } from '../consts';
+
+interface Props {
+	title?: string;
+	text?: string;
+}
+const {
+	title = 'Ready to schedule a ride?',
+	text = 'Submit a request online and we will confirm availability, or call dispatch directly during business hours.',
+} = Astro.props;
+---
+
+<section class="cta-band">
+	<div class="container cta-band__inner">
+		<div>
+			<p class="eyebrow">Get started</p>
+			<h2>{title}</h2>
+			<p class="lead">{text}</p>
+		</div>
+		<div class="cta-band__actions">
+			<a href="/request" class="btn btn--primary btn--lg">
+				Request a Ride
+				<Icon name="arrow" />
+			</a>
+			<a href={`tel:${PHONE_TEL}`} class="btn btn--outline-light btn--lg">
+				<Icon name="phone" />
+				{PHONE_DISPLAY}
+			</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.cta-band {
+		position: relative;
+		overflow: hidden;
+		padding-block: clamp(3rem, 6vw, 5rem);
+		background:
+			radial-gradient(ellipse at 10% 120%, rgba(232, 99, 10, 0.35), transparent 55%),
+			linear-gradient(135deg, var(--navy-dark), var(--navy));
+		color: var(--white);
+	}
+	.cta-band::before {
+		content: '';
+		position: absolute;
+		top: -40%;
+		right: -5%;
+		width: 380px;
+		height: 380px;
+		border-radius: 50%;
+		background: var(--orange);
+		opacity: 0.12;
+		filter: blur(20px);
+	}
+	.cta-band__inner {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1.4fr 1fr;
+		gap: 2.5rem;
+		align-items: center;
+	}
+	h2 {
+		color: var(--white);
+		margin-bottom: 0.6rem;
+	}
+	.lead {
+		color: rgba(255, 255, 255, 0.78);
+		margin: 0;
+		max-width: 52ch;
+	}
+	.eyebrow {
+		color: var(--orange-light);
+	}
+	.cta-band__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1rem;
+		justify-content: flex-end;
+	}
+	@media (max-width: 860px) {
+		.cta-band__inner {
+			grid-template-columns: 1fr;
+		}
+		.cta-band__actions {
+			justify-content: flex-start;
+		}
+	}
+</style>

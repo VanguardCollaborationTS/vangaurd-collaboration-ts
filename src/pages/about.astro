@@ -1,92 +1,336 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { LAUNCH_DATE, ADDRESS_LINES, SERVICE_AREA } from '../consts';
+
+const facts = [
+	{ icon: 'users', label: 'Owner / Primary Operator', value: 'Paul Gillum' },
+	{ icon: 'calendar', label: 'Start of Operations', value: LAUNCH_DATE },
+	{ icon: 'building', label: 'Base / Mailing Address', value: ADDRESS_LINES.join(', ') },
+	{ icon: 'map', label: 'Primary Service Area', value: SERVICE_AREA },
+] as const;
+
+const faqs = [
+	{
+		q: 'Will you accept Medicaid / MHCP trips?',
+		a: 'Yes. The company will enroll with Minnesota Health Care Programs (MHCP) and pursue broker/MCO credentialing after STS certification and vehicle compliance are complete.',
+	},
+	{
+		q: 'Are your vehicles wheelchair-accessible?',
+		a: 'Yes. Our vehicles are ramp- or lift-equipped and maintained to meet MnDOT Special Transportation Service (STS) requirements.',
+	},
+	{
+		q: 'Can you provide same-day service?',
+		a: 'Scheduled trips are prioritized. Same-day requests are handled based on availability and broker rules — call dispatch to check.',
+	},
+	{
+		q: 'How is client privacy handled?',
+		a: 'Client information is used only for booking, billing, and operational purposes, and is handled securely in line with HIPAA expectations.',
+	},
+	{
+		q: 'How do I pay for a private ride?',
+		a: 'Private-pay customers may pay by credit card, cash, or invoice. Personal checks require verification.',
+	},
+];
 ---
 
 <Layout
-	title="About Vanguard Collaboration Transportation Services"
-	description="Non-Emergency Medical Transportation (NEMT) & STS provider serving the Twin Cities metro."
+	title="About Us"
+	description="Learn about Vanguard Collaboration Transportation Services — a Roseville, MN based NEMT and STS provider founded by Paul Gillum to serve the Twin Cities metro."
 >
-	<style>
-		:root{
-			--bg: ivory;
-			--accent: #cc5500;
-			--text: #111;
-		}
-		body{ background: var(--bg); color:var(--text); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; }
-		main{ max-width:720px; margin:3rem auto; padding:2rem; }
-	</style>
+	<section class="page-hero">
+		<div class="container">
+			<p class="eyebrow">About Vanguard</p>
+			<h1>Reliable, dignified transportation for the people who need it most.</h1>
+			<p class="lead">
+				Vanguard Collaboration Transportation Services LLC provides safe, professional non-emergency medical transportation (NEMT) and Special Transportation Service (STS) trips throughout the Minneapolis–St. Paul metropolitan area.
+			</p>
+		</div>
+	</section>
 
-	<h2 style="color:#cc5500">Executive Summary</h2>
-	<p>
-		Vanguard Collaboration Transportation Services LLC is organized to provide reliable, safe, and professional non-emergency medical transportation (NEMT) and Special Transportation Service (STS) trips in the Minneapolis–St. Paul metropolitan area. The company is owned and operated by Paul Gillum and plans to begin operations on October 1, 2026.
-	</p>
+	<!-- Mission -->
+	<section class="section">
+		<div class="container mission">
+			<div class="mission__copy">
+				<p class="eyebrow">Our mission</p>
+				<h2>Getting vulnerable riders to care — safely, on time, and with respect.</h2>
+				<p class="lead">
+					To deliver dignified, punctual, and safety-focused transportation for elderly and disabled passengers who require door-to-door service to medical appointments, therapies, dialysis, and hospital discharges.
+				</p>
+				<p>
+					We don't compete on price. We compete on reliability, safety, and the kind of professional, compassionate care that gives passengers and their families genuine peace of mind.
+				</p>
+			</div>
+			<div class="mission__media">
+				<img src="/van-hero.png" alt="Vanguard Collaboration accessible van with ramp deployed" width="1408" height="768" loading="lazy" />
+			</div>
+		</div>
+	</section>
 
-	<h2 style="color:#cc5500">Mission</h2>
-	<p>
-		To deliver dignified, punctual, and safety-focused transportation for elderly and disabled passengers who require door-to-door service to medical appointments, therapies, dialysis, and hospital discharges.
-	</p>
+	<!-- Key facts -->
+	<section class="section section--ivory-dark">
+		<div class="container">
+			<p class="eyebrow">At a glance</p>
+			<h2>Key facts</h2>
+			<div class="grid grid--4 facts">
+				{facts.map((f) => (
+					<div class="card fact">
+						<div class="card__icon"><Icon name={f.icon} /></div>
+						<span class="fact__label">{f.label}</span>
+						<strong class="fact__value">{f.value}</strong>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
 
-	<h2 style="color:#cc5500">Key Facts</h2>
-	<ul>
-		<li>Owner / Primary Operator: Paul Gillum</li>
-		<li>Start of Operations: October 1, 2026</li>
-		<li>Base / Mailing Address: 2355 Highway 36 West, Bonestroo Suite 400-17432365, Roseville, MN 55113 (Regus virtual office)</li>
-		<li>Primary Service Area: Hennepin County, Ramsey County, and the greater Twin Cities metro area</li>
-	</ul>
+	<!-- Owner -->
+	<section class="section">
+		<div class="container owner">
+			<div class="owner__card card card--navy">
+				<div class="owner__avatar" aria-hidden="true">PG</div>
+				<h3>Paul Gillum</h3>
+				<p class="owner__role">Owner &amp; Principal Operator</p>
+				<p>12 years of healthcare industry experience supporting vulnerable adults and arranging transportation.</p>
+			</div>
+			<div class="owner__copy">
+				<p class="eyebrow">Leadership</p>
+				<h2>Built by someone who has spent a career in care.</h2>
+				<p>
+					The sole principal and initial driver is Paul Gillum, who brings 12 years of healthcare industry experience supporting vulnerable adults and arranging transportation. He personally manages dispatch, vehicle maintenance scheduling, compliance record-keeping, and client communication.
+				</p>
+				<p>
+					As trip volume grows, additional qualified drivers will be hired and trained to MnDOT STS and broker standards. Professional support includes an insurance agent experienced with NEMT/STS risks, accounting and bookkeeping support, and legal counsel as needed.
+				</p>
+			</div>
+		</div>
+	</section>
 
-	<h2 style="color:#cc5500">Services</h2>
-	<ul>
-		<li>Wheelchair-accessible transportation (ramp or lift-equipped vehicles) under MnDOT STS standards</li>
-		<li>Ambulatory non-emergency medical transportation for clients who can transfer independently</li>
-		<li>Door-to-door service to appointments, dialysis, physical/occupational therapy, specialist visits, and hospital discharges</li>
-		<li>Careful securement, respectful assistance, and cleanliness/sanitation practices</li>
-	</ul>
+	<!-- Standards -->
+	<section class="section section--navy">
+		<div class="container">
+			<div class="standards__head">
+				<p class="eyebrow">Our standards</p>
+				<h2>Compliance, safety, and training you can count on</h2>
+			</div>
+			<div class="grid grid--3">
+				<div class="standard">
+					<div class="standard__icon"><Icon name="shield" /></div>
+					<h3>Licensing &amp; insurance</h3>
+					<p>Full compliance with MnDOT Special Transportation Service (STS) standards, MHCP enrollment, and broker/MCO credentialing. Commercial auto liability and general liability coverage as required for NEMT operations.</p>
+				</div>
+				<div class="standard">
+					<div class="standard__icon"><Icon name="badge" /></div>
+					<h3>Driver training</h3>
+					<p>Required background studies plus training in wheelchair securement, passenger assistance, basic first aid, and company procedures for dignity and privacy.</p>
+				</div>
+				<div class="standard">
+					<div class="standard__icon"><Icon name="sparkle" /></div>
+					<h3>Vehicle standards</h3>
+					<p>Lift and ramp servicing, routine inspections, pre-trip checks, and regular cleaning and sanitization so every vehicle is safe and comfortable.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-	<h2 style="color:#cc5500">Licensing, Compliance, and Insurance</h2>
-	<p>
-		Vanguard Collaboration will operate in full compliance with MnDOT Special Transportation Service (STS) standards and pursue enrollment with Minnesota Health Care Programs (MHCP) and broker/MCO credentialing. Drivers will complete required background studies and training, including passenger assistance and wheelchair securement. The company will maintain commercial auto liability and general liability coverage as required for NEMT operations.
-	</p>
+	<!-- Operations + Billing -->
+	<section class="section">
+		<div class="container grid grid--2">
+			<div class="card">
+				<div class="card__icon"><Icon name="clock" /></div>
+				<h3>Day-to-day operations</h3>
+				<p>
+					Daily operations include receiving trip requests, scheduling and confirming rides, performing pre-trip vehicle inspections, transporting clients with proper securement, completing post-trip documentation, and submitting claims. Continuous improvement focuses on on-time performance, client feedback, and efficient routing.
+				</p>
+			</div>
+			<div class="card">
+				<div class="card__icon"><Icon name="receipt" /></div>
+				<h3>Booking, billing &amp; payments</h3>
+				<ul class="check-list">
+					<li>Trip requests via the website form, phone, or broker/MCO portals after credentialing.</li>
+					<li>Primary billing to MCOs, Medicaid brokers, and county contracts on net terms (typically 30–45 days).</li>
+					<li>Private-pay by credit card, cash, or invoice; personal checks require verification.</li>
+				</ul>
+			</div>
+		</div>
+	</section>
 
-	<h2 style="color:#cc5500">Booking, Billing, and Payments</h2>
-	<ul>
-		<li>Trip requests can be submitted via the website request form, phone, or through broker/MCO portals after credentialing.</li>
-		<li>Primary billing will be to managed care organizations (MCOs), Medicaid brokers, and county contracts on net terms (typically 30–45 days).</li>
-		<li>Private-pay customers may pay by credit card, cash, or invoice (merchant account will be established); personal checks require verification.</li>
-	</ul>
+	<!-- FAQ -->
+	<section class="section section--ivory-dark">
+		<div class="container container--narrow">
+			<div class="text-center">
+				<p class="eyebrow" style="justify-content:center">FAQs</p>
+				<h2>Common questions</h2>
+			</div>
+			<div class="faq">
+				{faqs.map((f) => (
+					<details class="faq__item">
+						<summary>{f.q}<Icon name="arrow" /></summary>
+						<p>{f.a}</p>
+					</details>
+				))}
+			</div>
+		</div>
+	</section>
 
-	<h2 style="color:#cc5500">Operations & Day-to-Day</h2>
-	<p>
-		Daily operations include receiving trip requests, scheduling and confirming rides, performing pre-trip vehicle inspections, transporting clients with proper securement, completing post-trip documentation, and submitting claims/billing. The owner will manage dispatch, vehicle maintenance scheduling, compliance record-keeping, and client communication. Continuous improvement will focus on on-time performance, client feedback, and efficient routing.
-	</p>
-
-	<h2 style="color:#cc5500">Safety, Training & Vehicle Standards</h2>
-	<p>
-		Safety and client comfort are priorities. Vehicles will be maintained to high standards, including lift/ramp servicing, routine inspections, and regular cleaning and sanitization. Drivers will be trained in wheelchair securement, passenger assistance, basic first aid, and company procedures for dignity and privacy.
-	</p>
-
-	<h2 style="color:#cc5500">Marketing & Referral Channels</h2>
-	<p>
-		Marketing focuses on reliability, safety, and professional care for vulnerable clients rather than competing on price. Key referral channels include broker/MCO directories, facility social workers and discharge planners, clinics and dialysis centers, word-of-mouth, Google Business Profile, and a simple professional website. A modest launch budget will support online presence and targeted outreach.
-	</p>
-
-	<h2 style="color:#cc5500">Management & Personnel</h2>
-	<p>
-		The sole principal and initial driver is Paul Gillum, who brings 12 years of healthcare industry experience supporting vulnerable adults and arranging transportation. As trip volume grows, additional qualified drivers may be hired and trained to MnDOT STS and broker standards. Professional support includes an insurance agent experienced with NEMT/STS risks, accounting/bookkeeping support, and legal counsel as needed.
-	</p>
-
-	<h2 style="color:#cc5500">FAQs</h2>
-	<ul>
-		<li>Will you accept Medicaid/MHCP trips? — Yes. The company will enroll with MHCP and pursue broker/MCO credentialing after STS certification and vehicle compliance are complete.</li>
-		<li>Are vehicles wheelchair-accessible? — Yes. The initial vehicle will be ramp- or lift-equipped and maintained to meet MnDOT STS requirements.</li>
-		<li>Can you provide same-day service? — Scheduled trips are prioritized; same-day requests will be handled based on availability and broker rules.</li>
-		<li>How is client privacy handled? — Client information is used only for booking, billing, and operational purposes and handled securely.</li>
-	</ul>
-
-	<h2 style="color:#cc5500">Contact & How to Request a Ride</h2>
-	<ul>
-		<li>Phone: (612) 250-1613</li>
-		<li>Request form: <a href="/request">/request</a></li>
-		<li>Broker/contract inquiries: contact the owner via phone or the email listed on the site</li>
-	</ul>
-
+	<CtaBand title="Have a question or need a ride?" text="Reach out to dispatch or submit a request — we'll confirm availability and any billing details." />
 </Layout>
+
+<style>
+	.mission {
+		display: grid;
+		grid-template-columns: 1.1fr 1fr;
+		gap: clamp(2rem, 5vw, 4rem);
+		align-items: center;
+	}
+	.mission__copy h2 {
+		max-width: 20ch;
+	}
+	.mission__media img {
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-lg);
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+
+	.facts {
+		margin-top: 1.5rem;
+	}
+	.fact {
+		display: flex;
+		flex-direction: column;
+	}
+	.fact__label {
+		font-size: var(--fs-xs);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		margin-bottom: 0.3rem;
+	}
+	.fact__value {
+		font-size: var(--fs-md);
+		line-height: 1.4;
+	}
+
+	.owner {
+		display: grid;
+		grid-template-columns: 340px 1fr;
+		gap: clamp(2rem, 5vw, 4rem);
+		align-items: center;
+	}
+	.owner__card {
+		text-align: center;
+	}
+	.owner__avatar {
+		display: grid;
+		place-items: center;
+		width: 96px;
+		height: 96px;
+		margin: 0 auto 1.25rem;
+		border-radius: 50%;
+		background: var(--orange);
+		color: var(--white);
+		font-size: 2rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+	}
+	.owner__card h3 {
+		margin-bottom: 0.2rem;
+	}
+	.owner__role {
+		color: var(--orange-light);
+		font-weight: 700;
+		font-size: var(--fs-sm);
+	}
+	.owner__copy h2 {
+		max-width: 20ch;
+	}
+
+	.standards__head {
+		margin-bottom: 2.5rem;
+	}
+	.standards__head h2 {
+		max-width: 24ch;
+	}
+	.standard {
+		padding: 1.75rem;
+		border-radius: var(--radius);
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+	.standard__icon {
+		display: inline-grid;
+		place-items: center;
+		width: 50px;
+		height: 50px;
+		margin-bottom: 1rem;
+		border-radius: 12px;
+		background: var(--orange);
+		color: var(--white);
+	}
+	.standard__icon svg {
+		width: 26px;
+		height: 26px;
+	}
+	.standard h3 {
+		font-size: var(--fs-lg);
+	}
+	.standard p {
+		margin: 0;
+		color: rgba(255, 255, 255, 0.75);
+	}
+
+	.faq {
+		margin-top: 2rem;
+		display: grid;
+		gap: 0.75rem;
+	}
+	.faq__item {
+		background: var(--white);
+		border: 1px solid var(--line);
+		border-radius: var(--radius);
+		padding: 0 1.5rem;
+		box-shadow: var(--shadow-sm);
+	}
+	.faq__item summary {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+		padding: 1.1rem 0;
+		font-weight: 700;
+		color: var(--navy);
+		cursor: pointer;
+		list-style: none;
+	}
+	.faq__item summary::-webkit-details-marker {
+		display: none;
+	}
+	.faq__item summary svg {
+		width: 20px;
+		height: 20px;
+		flex: none;
+		color: var(--orange);
+		transform: rotate(90deg);
+		transition: transform 0.25s var(--ease);
+	}
+	.faq__item[open] summary svg {
+		transform: rotate(-90deg);
+	}
+	.faq__item p {
+		padding-bottom: 1.25rem;
+		margin: 0;
+		color: var(--text-soft);
+	}
+
+	@media (max-width: 900px) {
+		.mission,
+		.owner {
+			grid-template-columns: 1fr;
+		}
+		.owner__card {
+			max-width: 420px;
+		}
+	}
+</style>
