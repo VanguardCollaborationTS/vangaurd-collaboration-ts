@@ -85,7 +85,10 @@ const steps = [
 			</div>
 			<div class="hero__media">
 				<div class="hero__frame">
-					<img src="/van-hero.png" alt="Vanguard Collaboration wheelchair-accessible van with rear ramp deployed outside a medical building" width="1408" height="768" loading="eager" fetchpriority="high" />
+					<picture>
+						<source srcset="/van-hero-person.webp" type="image/webp" />
+						<img src="/van-hero-person.jpg" alt="A smiling Vanguard Collaboration driver standing beside the company's wheelchair-accessible van with its rear ramp deployed outside a medical building" width="1600" height="873" loading="eager" fetchpriority="high" />
+					</picture>
 				</div>
 			</div>
 		</div>
@@ -313,9 +316,10 @@ const steps = [
 		pointer-events: none;
 	}
 	.hero__frame img {
+		display: block;
 		width: 100%;
 		height: 100%;
-		aspect-ratio: 16 / 10;
+		aspect-ratio: 1600 / 873;
 		object-fit: cover;
 	}
 

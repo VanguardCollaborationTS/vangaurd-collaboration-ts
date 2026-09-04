@@ -25,7 +25,7 @@ src/
   pages/        One .astro file per route
   styles/       global.css — design tokens, buttons, cards, forms
   consts.ts     Business info (phone, email, hours, address, nav links)
-public/         Static assets (van-hero.png, favicon.svg, fonts)
+public/         Static assets (van-hero-person.webp/.jpg for the home hero & social card, van-hero.png for About, favicon.svg, fonts)
 ```
 
 Business details (phone number, email, address, hours) live in `src/consts.ts` — update them there and every page picks up the change.
