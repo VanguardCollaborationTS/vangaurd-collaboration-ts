@@ -8,9 +8,7 @@ const year = new Date().getFullYear();
 	<div class="container footer-grid">
 		<div class="footer-brand">
 			<a href="/" class="brand">
-				<span class="brand__mark" aria-hidden="true">
-					<svg viewBox="0 0 32 32" fill="none"><path d="M4 8h24l-12 18z" fill="currentColor" /></svg>
-				</span>
+				<img class="brand__mark" src="/logo.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
 				<span class="brand__text">
 					<span class="brand__line">Vanguard Collaboration</span>
 					<span class="brand__line">Transportation Services</span>
@@ -76,17 +74,10 @@ const year = new Date().getFullYear();
 		text-decoration: none !important;
 	}
 	.brand__mark {
-		display: grid;
-		place-items: center;
-		width: 36px;
-		height: 36px;
-		border-radius: 9px;
-		background: var(--navy);
-	}
-	.brand__mark svg {
-		width: 20px;
-		height: 20px;
-		color: var(--white);
+		display: block;
+		width: 40px;
+		height: 40px;
+		flex: none;
 	}
 	.brand__text {
 		display: flex;
