@@ -8,7 +8,8 @@ interface Props {
 const { name, class: className, ...rest } = Astro.props;
 
 const icons = {
-	wheelchair: `<circle cx="14" cy="4" r="2"/><path d="M19 13v-2a1 1 0 0 0-1-1h-5.5l-1-4H8"/><path d="M6.5 11.5A5 5 0 1 0 14 17.5"/><path d="M18 21l-2.5-6H12"/>`,
+	// International Symbol of Access (Tabler Icons "disabled", MIT)
+	wheelchair: `<circle cx="11" cy="5" r="2"/><path d="M11 7v8h4l4 5"/><path d="M11 11h5"/><path d="M7 11.5a5 5 0 1 0 6 7.5"/>`,
 	door: `<path d="M13 4h3a2 2 0 0 1 2 2v14"/><path d="M2 20h3"/><path d="M13 20h9"/><path d="M10 12v.01"/><path d="M13 4.562v16.157a1 1 0 0 1-1.242.97L5 20V5.562a2 2 0 0 1 1.515-1.94l4-1A2 2 0 0 1 13 4.561z"/>`,
 	shield: `<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>`,
 	clock: `<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>`,
