@@ -13,6 +13,13 @@ const LEGACY_HOSTS = new Set([
 	"vangaurd-collaboration-ts.yawriv.workers.dev",
 ]);
 
+// Cloudflare's edge stamps every real request with `cf-visitor: {"scheme":"http"|"https"}`.
+// `wrangler dev` does not, and it also presents request.url as the canonical
+// route host over plain http, so reading the scheme from this header (rather
+// than url.protocol) is what keeps local previews from redirect-looping.
+const visitorUsedHttp = (request: Request) =>
+	request.headers.get("cf-visitor")?.includes('"http"') ?? false;
+
 export function createExports(manifest: SSRManifest) {
 	const app = new App(manifest);
 	// The adapter's handler is typed against its own copy of @cloudflare/workers-types,
@@ -32,7 +39,7 @@ export function createExports(manifest: SSRManifest) {
 				const url = new URL(request.url);
 
 				// Force https and the canonical host in a single hop.
-				if (url.protocol === "http:" || LEGACY_HOSTS.has(url.host)) {
+				if (visitorUsedHttp(request) || LEGACY_HOSTS.has(url.host)) {
 					url.protocol = "https:";
 					if (LEGACY_HOSTS.has(url.host)) url.host = CANONICAL_HOST;
 					return Response.redirect(url.toString(), 301);
