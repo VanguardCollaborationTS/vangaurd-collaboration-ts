@@ -1,0 +1,57 @@
+---
+/**
+ * Progressive-enhancement AJAX submission for Formspree forms.
+ * Any <form data-ajax> with a [data-status] sibling/child gets async submit with fallback.
+ */
+---
+
+<script>
+	const forms = document.querySelectorAll<HTMLFormElement>('form[data-ajax]');
+
+	forms.forEach((form) => {
+		const status = form.querySelector<HTMLElement>('[data-status]');
+		const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+		const fallbackPhone = form.dataset.phone ?? '';
+
+		const show = (kind: 'ok' | 'err', text: string) => {
+			if (!status) return;
+			status.className = `form-status form-status--${kind}`;
+			status.textContent = text;
+			status.hidden = false;
+		};
+
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			if (status) status.hidden = true;
+			if (button) {
+				button.disabled = true;
+				button.dataset.label = button.textContent ?? '';
+				button.textContent = 'Sending…';
+			}
+
+			try {
+				const res = await fetch(form.action, {
+					method: 'POST',
+					body: new FormData(form),
+					headers: { Accept: 'application/json' },
+				});
+				if (res.ok) {
+					form.reset();
+					show('ok', form.dataset.success ?? 'Thanks — your message was sent. We will be in touch shortly.');
+				} else {
+					const json = await res.json().catch(() => null);
+					const msg = json?.errors?.[0]?.message ?? json?.error ?? 'There was a problem sending the form.';
+					show('err', `${msg}${fallbackPhone ? ` If the problem persists, please call ${fallbackPhone}.` : ''}`);
+				}
+			} catch {
+				// Network/CORS failure: fall back to a standard POST.
+				form.submit();
+			} finally {
+				if (button) {
+					button.disabled = false;
+					button.textContent = button.dataset.label ?? 'Submit';
+				}
+			}
+		});
+	});
+</script>

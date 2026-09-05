@@ -1,18 +1,166 @@
 ---
-const today = new Date();
+import { SITE_TITLE, NAV_LINKS, PHONE_DISPLAY, PHONE_TEL, EMAIL, ADDRESS_LINES, HOURS, SERVICE_AREA } from '../consts';
+
+const year = new Date().getFullYear();
 ---
 
-<footer>
-	&copy; {today.getFullYear()} Vanguard Transportation Services LLC. All rights reserved.
+<footer class="site-footer">
+	<div class="container footer-grid">
+		<div class="footer-brand">
+			<a href="/" class="brand">
+				<span class="brand__mark" aria-hidden="true">
+					<svg viewBox="0 0 32 32" fill="none"><path d="M4 8h24l-12 18z" fill="currentColor" /></svg>
+				</span>
+				<span class="brand__text">
+					<span class="brand__line">Vanguard Collaboration</span>
+					<span class="brand__line">Transportation Services</span>
+				</span>
+			</a>
+			<p>Safe, dignified non-emergency medical and specialized transportation for seniors, riders with disabilities, students, and clients recovering from injury across the Twin Cities.</p>
+			<p class="muted">Serving {SERVICE_AREA}.</p>
+		</div>
+
+		<nav class="footer-col" aria-label="Footer">
+			<h4>Explore</h4>
+			<ul>
+				{NAV_LINKS.map(({ href, label }) => <li><a href={href}>{label}</a></li>)}
+				<li><a href="/request">Request a Ride</a></li>
+			</ul>
+		</nav>
+
+		<div class="footer-col">
+			<h4>Hours</h4>
+			<ul>
+				{HOURS.map(({ days, time }) => (
+					<li><strong>{days}</strong><br />{time}</li>
+				))}
+			</ul>
+		</div>
+
+		<div class="footer-col">
+			<h4>Contact</h4>
+			<ul>
+				<li><a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a></li>
+				<li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
+				<li class="address">{ADDRESS_LINES.map((l) => <span>{l}</span>)}</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="footer-bottom">
+		<div class="container footer-bottom__inner">
+			<span>&copy; {year} {SITE_TITLE} LLC. All rights reserved.</span>
+			<span>MnDOT STS compliant · NEMT provider</span>
+		</div>
+	</div>
 </footer>
 
 <style>
-	footer {
-		padding: 2em 1em 6em 1em;
+	.site-footer {
+		background: linear-gradient(180deg, var(--orange-dark), #a84404);
+		color: rgba(255, 255, 255, 0.86);
+		margin-top: auto;
+	}
+	.footer-grid {
+		display: grid;
+		grid-template-columns: 1.6fr repeat(3, 1fr);
+		gap: 2.5rem;
+		padding-block: 3.5rem 2.5rem;
+	}
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.7rem;
+		margin-bottom: 1rem;
+		color: var(--white);
+		text-decoration: none !important;
+	}
+	.brand__mark {
+		display: grid;
+		place-items: center;
+		width: 36px;
+		height: 36px;
+		border-radius: 9px;
+		background: var(--navy);
+	}
+	.brand__mark svg {
+		width: 20px;
+		height: 20px;
+		color: var(--white);
+	}
+	.brand__text {
+		display: flex;
+		flex-direction: column;
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: 1.1rem;
+		line-height: 0.98;
+		letter-spacing: 0.035em;
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+	.brand__line:last-child {
+		color: rgba(255, 255, 255, 0.8);
+	}
+	.footer-brand p {
+		max-width: 38ch;
+	}
+	.footer-brand .muted {
+		color: rgba(255, 255, 255, 0.65);
+	}
+	h4 {
+		color: var(--ivory);
+		font-size: var(--fs-xs);
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		margin-bottom: 1.1rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 2px solid var(--navy);
+		display: inline-block;
+	}
+	.footer-col ul {
+		list-style: none;
+		padding: 0;
 		margin: 0;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
-		width: 100%;
+	}
+	.footer-col li {
+		margin-bottom: 0.7rem;
+		line-height: 1.5;
+	}
+	.footer-col a {
+		color: rgba(255, 255, 255, 0.9);
+	}
+	.footer-col a:hover {
+		color: var(--ivory);
+		text-decoration: underline;
+	}
+	.footer-col strong {
+		color: var(--white);
+	}
+	.address span {
+		display: block;
+	}
+	.footer-bottom {
+		background: var(--navy);
+		font-size: var(--fs-xs);
+		color: rgba(255, 255, 255, 0.7);
+	}
+	.footer-bottom__inner {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+		padding-block: 1.25rem;
+	}
+	@media (max-width: 900px) {
+		.footer-grid {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+	@media (max-width: 540px) {
+		.footer-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
 	}
 </style>

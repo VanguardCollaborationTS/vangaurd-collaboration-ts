@@ -1,0 +1,202 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import FormHandler from '../components/FormHandler.astro';
+import { PHONE_DISPLAY, PHONE_TEL, EMAIL, ADDRESS_LINES, HOURS, SERVICE_AREA, FORMSPREE_ACTION } from '../consts';
+---
+
+<Layout
+	title="Contact"
+	description="Contact Vanguard Collaboration Transportation Services in Roseville, MN. Call dispatch, email us, or send a message about rides, partnerships, or broker and MCO credentialing."
+>
+	<section class="page-hero">
+		<div class="container">
+			<p class="eyebrow">Contact</p>
+			<h1>We're here to help.</h1>
+			<p class="lead">
+				Questions about a ride, partnering with a facility, or broker and MCO contracts — reach out and we'll get back to you promptly.
+			</p>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="container contact">
+			<div class="contact__info">
+				<a href={`tel:${PHONE_TEL}`} class="card contact__card">
+					<div class="card__icon"><Icon name="phone" /></div>
+					<h3>Call dispatch</h3>
+					<strong class="contact__value">{PHONE_DISPLAY}</strong>
+					<p class="muted">Fastest way to book or ask about same-day availability.</p>
+				</a>
+				<a href={`mailto:${EMAIL}`} class="card contact__card">
+					<div class="card__icon"><Icon name="mail" /></div>
+					<h3>Email us</h3>
+					<strong class="contact__value contact__value--sm">{EMAIL}</strong>
+					<p class="muted">For general inquiries, partnerships, and broker/MCO credentialing.</p>
+				</a>
+				<div class="card contact__card">
+					<div class="card__icon"><Icon name="building" /></div>
+					<h3>Mailing address</h3>
+					<address>
+						{ADDRESS_LINES.map((l) => <span>{l}</span>)}
+					</address>
+				</div>
+				<div class="card contact__card card--orange">
+					<div class="card__icon"><Icon name="clock" /></div>
+					<h3>Hours</h3>
+					<ul class="hours">
+						{HOURS.map((h) => (
+							<li><span>{h.days}</span><strong>{h.time}</strong></li>
+						))}
+					</ul>
+					<p class="muted contact__area">Serving {SERVICE_AREA}.</p>
+				</div>
+			</div>
+
+			<form
+				class="card contact__form"
+				method="POST"
+				action={FORMSPREE_ACTION}
+				data-ajax
+				data-phone={PHONE_DISPLAY}
+				data-success="Thanks — your message was sent. We'll get back to you shortly."
+			>
+				<h2>Send a message</h2>
+				<p class="muted">Need a ride? Use the <a href="/request">ride request form</a> for faster scheduling.</p>
+
+				<div class="form-grid">
+					<div class="field">
+						<label for="c-name">Name <span>*</span></label>
+						<input id="c-name" name="name" type="text" autocomplete="name" required />
+					</div>
+					<div class="field">
+						<label for="c-org">Organization</label>
+						<input id="c-org" name="organization" type="text" autocomplete="organization" placeholder="Clinic, facility, or agency" />
+					</div>
+					<div class="field">
+						<label for="c-email">Email <span>*</span></label>
+						<input id="c-email" name="email" type="email" autocomplete="email" required />
+					</div>
+					<div class="field">
+						<label for="c-phone">Phone</label>
+						<input id="c-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(612) 555-1212" />
+					</div>
+					<div class="field full">
+						<label for="c-topic">Topic</label>
+						<select id="c-topic" name="topic">
+							<option>General question</option>
+							<option>Facility or case manager partnership</option>
+							<option>Broker / MCO credentialing</option>
+							<option>Billing question</option>
+							<option>Feedback</option>
+						</select>
+					</div>
+					<div class="field full">
+						<label for="c-message">Message <span>*</span></label>
+						<textarea id="c-message" name="message" required></textarea>
+					</div>
+				</div>
+
+				<input type="hidden" name="_subject" value="New contact form message from website" />
+				<input type="hidden" name="_language" value="en" />
+
+				<div class="contact__submit">
+					<button class="btn btn--primary btn--lg" type="submit">Send message <Icon name="arrow" /></button>
+				</div>
+				<div class="form-status" data-status role="status" aria-live="polite" hidden></div>
+			</form>
+		</div>
+	</section>
+
+	<FormHandler />
+</Layout>
+
+<style>
+	.contact {
+		display: grid;
+		grid-template-columns: 1fr 1.3fr;
+		gap: 2rem;
+		align-items: start;
+	}
+	.contact__info {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.25rem;
+	}
+	.contact__card {
+		display: flex;
+		flex-direction: column;
+		color: inherit;
+		text-decoration: none !important;
+	}
+	.contact__card h3 {
+		font-size: var(--fs-lg);
+		margin-bottom: 0.35rem;
+	}
+	.contact__value {
+		font-size: var(--fs-xl);
+		color: var(--orange-dark);
+		margin-bottom: 0.5rem;
+		word-break: break-word;
+	}
+	.contact__value--sm {
+		font-size: var(--fs-md);
+	}
+	.contact__card .muted {
+		margin: 0;
+	}
+	address {
+		font-style: normal;
+		line-height: 1.5;
+	}
+	address span {
+		display: block;
+	}
+	.hours {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 0.75rem;
+	}
+	.hours li {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.5rem 0;
+		border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+	}
+	.hours li:last-child {
+		border-bottom: 0;
+	}
+	.contact__area {
+		color: rgba(255, 255, 255, 0.8) !important;
+	}
+
+	.contact__form {
+		padding: clamp(1.5rem, 3vw, 2.5rem);
+	}
+	.contact__form:hover {
+		transform: none;
+		box-shadow: var(--shadow-sm);
+		border-color: var(--line);
+	}
+	.contact__form h2 {
+		margin-bottom: 0.25rem;
+	}
+	.form-grid {
+		margin-top: 1.5rem;
+	}
+	.contact__submit {
+		margin-top: 1.5rem;
+	}
+
+	@media (max-width: 960px) {
+		.contact {
+			grid-template-columns: 1fr;
+		}
+	}
+	@media (max-width: 540px) {
+		.contact__info {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

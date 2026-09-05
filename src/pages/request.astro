@@ -1,117 +1,254 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import FormHandler from '../components/FormHandler.astro';
+import { PHONE_DISPLAY, PHONE_TEL, HOURS, FORMSPREE_ACTION } from '../consts';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={`${SITE_TITLE} — Request Transportation`} description={SITE_DESCRIPTION} />
-    <style>
-      :root{ --bg: ivory; --accent: orange; --text:#111; }
-      body{ background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; }
-      main{ max-width:800px; margin:2.5rem auto; padding:1.5rem; }
-      h1{ color:var(--accent); }
-      form{ background:rgba(255,165,0,0.04); padding:1rem; border-radius:8px; }
-      label{ display:block; margin-top:0.75rem; font-weight:600; }
-      input[type=text], input[type=email], textarea{ width:100%; padding:0.6rem; margin-top:0.25rem; border-radius:6px; border:1px solid #ddd; font-size:1rem; }
-      textarea{ min-height:140px; resize:vertical; }
-      .row{ display:flex; gap:1rem; }
-      .col{ flex:1; }
-      .button{ display:inline-block; background:var(--accent); color:white; padding:0.6rem 1rem; border-radius:6px; text-decoration:none; border:none; cursor:pointer; margin-top:0.9rem; }
-      .muted{ color:#555; font-size:0.95rem; }
-      .success, .error{ margin-top:1rem; padding:0.75rem; border-radius:6px; }
-      .success{ background:#e6ffed; border:1px solid #bdeecf; color:#063; }
-      .error{ background:#fff1f0; border:1px solid #f4b1b1; color:#700; }
-      @media (max-width:640px){ .row{ flex-direction:column; } }
-    </style>
-  </head>
-  <body>
-    <Header />
-    <main>
-      <h1>Request Transportation</h1>
-      <p class="muted">Please complete this form and we'll contact you to confirm availability. If this is an urgent dispatch request, please call our dispatch line at <a href="tel:+16122501613">(612) 250-1613</a>.</p>
+<Layout
+	title="Request a Ride"
+	description="Request non-emergency medical transportation in the Twin Cities. Tell us your pickup, destination, date, time, and mobility needs and we'll confirm availability."
+>
+	<section class="page-hero">
+		<div class="container">
+			<p class="eyebrow">Request transportation</p>
+			<h1>Tell us about your trip.</h1>
+			<p class="lead">
+				Complete the form and we'll contact you to confirm availability and pricing. For urgent dispatch requests, please call <a href={`tel:${PHONE_TEL}`}>{PHONE_DISPLAY}</a>.
+			</p>
+		</div>
+	</section>
 
-      <!--
-        Formspree setup:
-        - This form posts to Formspree. Replace the action URL with the Formspree endpoint created for your form if necessary.
-        - The action is currently set to use your provided email (info@vanguardcollaborationts.com). If you register a Formspree form you'll receive a form ID like "f/abcd1234" and should replace the action URL with https://formspree.io/f/FORM_ID
-      -->
+	<section class="section">
+		<div class="container request">
+			<form
+				id="requestForm"
+				class="card request__form"
+				method="POST"
+				action={FORMSPREE_ACTION}
+				data-ajax
+				data-phone={PHONE_DISPLAY}
+				data-success="Thanks — your request was submitted. We will contact you soon to confirm availability."
+			>
+				<h2>Ride details</h2>
+				<p class="muted">Fields marked <span class="req">*</span> are required.</p>
 
-      <form id="requestForm" method="POST" action="https://formspree.io/info@vanguardcollaborationts.com">
-        <label for="name">Name *</label>
-        <input id="name" name="name" type="text" required />
+				<div class="form-grid">
+					<div class="field full">
+						<label for="name">Passenger or contact name <span>*</span></label>
+						<input id="name" name="name" type="text" autocomplete="name" required />
+					</div>
 
-        <div class="row">
-          <div class="col">
-            <label for="phone">Phone Number *</label>
-            <input id="phone" name="phone" type="text" pattern="^[0-9\s()+-]{7,20}$" placeholder="(612) 555-1212" required />
-          </div>
+					<div class="field">
+						<label for="phone">Phone number <span>*</span></label>
+						<input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="^[0-9\s()+-]{7,20}$" placeholder="(612) 555-1212" required />
+					</div>
+					<div class="field">
+						<label for="email">Email <span>*</span></label>
+						<input id="email" name="email" type="email" autocomplete="email" required />
+					</div>
 
-          <div class="col">
-            <label for="email">Email *</label>
-            <input id="email" name="email" type="email" required />
-          </div>
-        </div>
+					<div class="field full">
+						<label for="pickup">Pickup address <span>*</span></label>
+						<input id="pickup" name="pickup_address" type="text" autocomplete="street-address" placeholder="Street, city, ZIP" required />
+					</div>
+					<div class="field full">
+						<label for="dropoff">Destination <span>*</span></label>
+						<input id="dropoff" name="destination" type="text" placeholder="Clinic or facility name and address" required />
+					</div>
 
-        <label for="details">Request details (pickup/dropoff, date/time, accessibility needs, passenger count, notes) *</label>
-        <textarea id="details" name="details" required placeholder="Please include as many details as possible."></textarea>
+					<div class="field">
+						<label for="date">Appointment date <span>*</span></label>
+						<input id="date" name="appointment_date" type="date" required />
+					</div>
+					<div class="field">
+						<label for="time">Appointment time <span>*</span></label>
+						<input id="time" name="appointment_time" type="time" required />
+					</div>
 
-        <!-- optional hidden fields for Formspree -->
-        <input type="hidden" name="_subject" value="New transportation request from website" />
-        <input type="hidden" name="_language" value="en" />
+					<div class="field">
+						<label for="mobility">Mobility needs <span>*</span></label>
+						<select id="mobility" name="mobility" required>
+							<option value="" disabled selected>Select one</option>
+							<option>Ambulatory — no assistance needed</option>
+							<option>Ambulatory — needs light assistance</option>
+							<option>Wheelchair — rider has own chair</option>
+							<option>Wheelchair — needs a chair provided</option>
+							<option>Stretcher / non-ambulatory</option>
+						</select>
+					</div>
+					<div class="field">
+						<label for="passengers">Number of passengers</label>
+						<select id="passengers" name="passengers">
+							<option>1</option>
+							<option>2</option>
+							<option>3+</option>
+						</select>
+						<p class="hint">Include companions or caregivers riding along.</p>
+					</div>
 
-        <button class="button" type="submit">Submit Request</button>
+					<div class="field">
+						<label for="tripType">Trip type</label>
+						<select id="tripType" name="trip_type">
+							<option>Round trip</option>
+							<option>One way</option>
+							<option>Recurring (dialysis, therapy, school, etc.)</option>
+						</select>
+					</div>
+					<div class="field">
+						<label for="purpose">Trip purpose</label>
+						<select id="purpose" name="trip_purpose">
+							<option>Medical appointment</option>
+							<option>Dialysis / infusion / recurring treatment</option>
+							<option>Physical, occupational, or speech therapy</option>
+							<option>Therapist / psychologist / counseling</option>
+							<option>Hospital discharge or transfer</option>
+							<option>Motor vehicle accident-related care</option>
+							<option>Daycare / grade school</option>
+							<option>College / university</option>
+							<option>Adult day program / social services</option>
+							<option>Other</option>
+						</select>
+					</div>
 
-        <div id="formMessage" role="status" aria-live="polite"></div>
-      </form>
+					<div class="field full">
+						<label for="payer">Payment / coverage</label>
+						<select id="payer" name="payer">
+							<option>Not sure yet</option>
+							<option>Medicaid / MHCP</option>
+							<option>Managed care organization (MCO)</option>
+							<option>Waiver program</option>
+							<option>Auto insurance (PIP / no-fault)</option>
+							<option>Attorney / legal case</option>
+							<option>Private pay</option>
+							<option>Other insurance</option>
+						</select>
+					</div>
 
-      <p class="muted" style="margin-top:1rem;">By submitting this form you agree to be contacted by Vanguard Collaboration Transportation Services LLC for booking and dispatch purposes.</p>
-    </main>
-    <Footer />
+					<div class="field full">
+						<label for="details">Additional notes</label>
+						<textarea id="details" name="details" placeholder="Return pickup time, oxygen or equipment, cognitive or communication needs, school or facility check-in instructions, anything else we should know."></textarea>
+					</div>
+				</div>
 
-    <script>
-      // Progressive-enhanced AJAX submission to Formspree (falls back to normal POST if fetch fails or blocked)
-      (function(){
-        const form = document.getElementById('requestForm');
-        const msg = document.getElementById('formMessage');
-        const action = form.getAttribute('action');
+				<input type="hidden" name="_subject" value="New transportation request from website" />
+				<input type="hidden" name="_language" value="en" />
 
-        form.addEventListener('submit', async function(e){
-          e.preventDefault();
-          msg.textContent = '';
+				<div class="request__submit">
+					<button class="btn btn--primary btn--lg" type="submit">Submit request <Icon name="arrow" /></button>
+					<p class="muted">By submitting this form you agree to be contacted by Vanguard Collaboration Transportation Services LLC for booking and dispatch purposes.</p>
+				</div>
 
-          const data = new FormData(form);
+				<div class="form-status" data-status role="status" aria-live="polite" hidden></div>
+			</form>
 
-          try{
-            const res = await fetch(action, {
-              method: 'POST',
-              body: data,
-              headers: { 'Accept': 'application/json' }
-            });
+			<aside class="request__aside">
+				<div class="card card--orange">
+					<div class="card__icon"><Icon name="phone" /></div>
+					<h3>Prefer to call?</h3>
+					<p>Speak with dispatch directly to clarify mobility needs or arrange urgent trips.</p>
+					<a href={`tel:${PHONE_TEL}`} class="btn btn--navy">{PHONE_DISPLAY}</a>
+				</div>
+				<div class="card">
+					<div class="card__icon"><Icon name="clock" /></div>
+					<h3>Dispatch hours</h3>
+					<ul class="hours">
+						{HOURS.map((h) => (
+							<li><span>{h.days}</span><strong>{h.time}</strong></li>
+						))}
+					</ul>
+				</div>
+				<div class="card">
+					<div class="card__icon"><Icon name="check" /></div>
+					<h3>What happens next</h3>
+					<ol class="next">
+						<li>We review your request during business hours.</li>
+						<li>We confirm availability, pricing, and any authorizations.</li>
+						<li>You receive a confirmation with your pickup window.</li>
+					</ol>
+				</div>
+			</aside>
+		</div>
+	</section>
 
-            if(res.ok){
-              form.reset();
-              msg.innerHTML = '<div class="success">Thanks — your request was submitted. We will contact you soon to confirm.</div>';
-            } else {
-              const json = await res.json().catch(()=>null);
-              const err = json && json.error ? json.error : 'There was a problem submitting the form.';
-              msg.innerHTML = `<div class="error">${err} If the problem persists, please call (612) 250-1613.</div>`;
-            }
-          }catch(err){
-            // If network error or CORS blocked, fall back to normal form submit
-            try{
-              msg.innerHTML = '<div class="muted">Unable to submit via AJAX — attempting standard form submit. If that fails, please call (612) 250-1613.</div>';
-              form.removeEventListener('submit', arguments.callee);
-              form.submit();
-            }catch(e){
-              msg.innerHTML = '<div class="error">Submission failed. Please call (612) 250-1613 to place your request.</div>';
-            }
-          }
-        });
-      })();
-    </script>
-  </body>
-</html>
+	<FormHandler />
+</Layout>
+
+<style>
+	.request {
+		display: grid;
+		grid-template-columns: 1.6fr 1fr;
+		gap: 2rem;
+		align-items: start;
+	}
+	.request__form {
+		padding: clamp(1.5rem, 3vw, 2.5rem);
+	}
+	.request__form:hover {
+		transform: none;
+		box-shadow: var(--shadow-sm);
+		border-color: var(--line);
+	}
+	.request__form h2 {
+		margin-bottom: 0.25rem;
+	}
+	.req {
+		color: var(--orange);
+		font-weight: 700;
+	}
+	.form-grid {
+		margin-top: 1.5rem;
+	}
+	.request__submit {
+		margin-top: 1.75rem;
+		display: grid;
+		gap: 1rem;
+	}
+	.request__submit .btn {
+		justify-self: start;
+	}
+	.request__submit .muted {
+		margin: 0;
+		max-width: 60ch;
+	}
+	.request__aside {
+		display: grid;
+		gap: 1.25rem;
+		position: sticky;
+		top: 96px;
+	}
+	.request__aside .card:hover {
+		transform: none;
+	}
+	.hours {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.hours li {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.6rem 0;
+		border-bottom: 1px dashed var(--line);
+	}
+	.hours li:last-child {
+		border-bottom: 0;
+	}
+	.next {
+		margin: 0;
+		padding-left: 1.2rem;
+		color: var(--text-soft);
+	}
+	.next li {
+		margin-bottom: 0.4rem;
+	}
+	@media (max-width: 900px) {
+		.request {
+			grid-template-columns: 1fr;
+		}
+		.request__aside {
+			position: static;
+		}
+	}
+</style>
